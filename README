@@ -1,0 +1,15 @@
+Authors: 
+Team RamRod:
+	Chris Sims
+	Steve Monette
+	Tanya Burmeister
+	Ryan Winters
+
+zzzzzzzzzzzz (that's 12, if you're counting) is a simple action side-scroller
+that places you in an alternate dimension where you have no defense and no way
+to traverse but to move your body and reverse gravity.
+
+Keys:
+	Movement: (left/right arrows) move your character left and right
+			  (z) reverse gravity!
+			  (m) access in-game menu
