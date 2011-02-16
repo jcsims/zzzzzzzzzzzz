@@ -1,0 +1,13 @@
+Team  Name: Team RamRod
+
+Game  Name  with  tagline: ZZZZZZZZZZZZZZZ: Murder
+
+Team  members:
+	Chris Sims
+	Ryan Winters
+	Tanya Burmeister
+	Steve Monette
+
+Game  concept: Simple adventure side-scroller, where the player has the ability to
+move around the level, move to the edge of the screen to load a new area, and 
+reverse gravity.  This is a clone of the game 'VVVVVVVVVVVV'.
