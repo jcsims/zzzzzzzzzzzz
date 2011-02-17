@@ -1,6 +1,6 @@
-At  a  minimum,  your  design  document  should  include:  
-Title  page  with:   
-	o Game  name  with  tagline   
+At a minimum, your design document should include: 
+Title page with: 
+	o Game name with tagline  
 	o Team  members  
 
 Game  overview  
@@ -33,5 +33,5 @@ Management  
 	o How will you track bugs and progress?    
 	o How will your demo be organized?
 
-Testing  
+Tsting  
 	o How will you test the game?
