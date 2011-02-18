@@ -1,0 +1,37 @@
+At a minimum, your design document should include: 
+Title page with: 
+	o Game name with tagline  
+	o Team  members  
+
+Game  overview  
+	o Game  concept  
+	o Feature  set
+	o Genre
+	o Target  audience   
+	o Game  flow  summary - how  does a user play the game?   
+	o Look and feel - what menus do you have, does it have color, etc  
+
+Gameplay   
+	o Game progression, mission, or challenge. How does the user win the game?  What is the concept of winning for your game?   
+	o Is the game networked, multiplayer, single?   
+	o What levels, boards, or configurations, screens does the game have?  
+
+Mechanics
+	o Rules  
+	o Point system 
+	o How does a player move around and interact with the game? What actions can the player take?  
+	o What are the modules that you will need to create to make the game?   
+
+Game options  
+	o What options does your game allow?    
+	o Can the user save/load a game?
+
+Management  
+	o What is your target schedule for different pieces of the game   
+	o How will your team meet and communicate and how often?   
+	o Which version control system will you be using?   
+	o How will you track bugs and progress?    
+	o How will your demo be organized?
+
+Tsting  
+	o How will you test the game?
