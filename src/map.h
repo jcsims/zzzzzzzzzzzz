@@ -5,7 +5,7 @@
  */
 
 /* Definitions to make the code readable: easy to change row and column 
- * numbers, as well as chars that will repersent various qualities of
+ * numbers, as well as chars that will represent various attributes of
  * the spots on the map. 
  * Blocked: game character cannot occupy the spot
  * Deadly: game character will die when occupying this spot
@@ -22,5 +22,6 @@
 
 typedef struct d_game_map {
 	char visible[ROWS][COLUMNS];
-	char 
+	char attribute[ROWS][COLUMNS];
+	
 };

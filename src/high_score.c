@@ -4,4 +4,4 @@
  * Description: Read in and save the game high score info 
  */
 
- //TODO: Make sure to block interrupts while writing and read the file
+ //TODO: Make sure to block interrupts while writing and reading the file
