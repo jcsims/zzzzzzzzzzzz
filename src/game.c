@@ -4,22 +4,32 @@
  * Description: Main game engine source file for zzzzzzzzzzzz 
  */
 
-
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+#include <curses.h>
+#include "map.h"
 #include "game.h"
 
 int main (int argc, char *argv[]) {
 
 	d_game_state newgame;
 
-	initscr(); 				//Start ncurses
-	keypad(stdscr, true); 	//enable use of the arrow keys
+	init_game(&newgame);
 
-	if (!init_game(&newgame)) {
-		puts("Error: not able to init new game.")
-		exit(1);
-	}
+	printw("Paused? %d  Game finished? %d\n", newgame.paused, newgame.game_complete);
+	getch();
 
-	puts("Hello, game file reporting.");
+	endwin();
 	
 	return 0;
+}
+
+void init_game (d_game_state *newgame) {
+ 	initscr(); 				//Start ncurses
+	keypad(stdscr, true); 	//enable use of the arrow keys
+	raw();					//pass all keypresses, including control characters
+
+ 	newgame->paused = false;
+ 	newgame->game_complete = false;
 }

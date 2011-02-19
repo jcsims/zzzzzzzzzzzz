@@ -23,5 +23,4 @@
 typedef struct d_game_map {
 	char visible[ROWS][COLUMNS];
 	char attribute[ROWS][COLUMNS];
-	
 };

@@ -6,15 +6,10 @@
 
 #include <stdio.h>
 #include <stdbool.h>
-#include <ncurses.h>
-#include "maps.h"
 
 typedef struct d_game_state {
 	bool paused;
 	bool game_complete;
-}
+} d_game_state;
 
-int init_game (d_game_state *newgame) {
- 	newgame->paused = false;
- 	newgame->game_complete = false;
-}
+void init_game (d_game_state *newgame);
