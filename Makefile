@@ -1,12 +1,12 @@
 .PHONY: clean
 
 CC=gcc
-CFLAGS=-c -Wall -g 
+CFLAGS=-c -Wall -g
 LDFLAGS=-lcurses
 SOURCES=map.c game.c high_score.c
-vpath %.h ./src
-vpath %.c ./src
-vpath %.o ./bin
+vpath %.h src
+vpath %.c src
+vpath %.o bin
 BUILDDIR=bin
 OBJECTS=$(SOURCES:.c=.o)
 EXECUTABLE=zzzzzzzzzzzz
