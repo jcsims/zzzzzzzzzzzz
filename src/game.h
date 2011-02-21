@@ -28,8 +28,8 @@ void toggle_gravity();
   Normal:
 
   o
- /|\ 
- / \ 
+ /|\
+ / \
 
  Reversed:
  \ /
