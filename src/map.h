@@ -12,15 +12,18 @@
  * Goal: player wins the game when occupying this spot
  */
  
- #define ROWS 24
- #define COLUMNS 80
- #define DEADLY d
- #define BLOCKED b
- #define GOAL g
+#define ROWS 24
+#define COLUMNS 80
+//Map attributes
+#define DEADLY d
+#define BLOCKED b
+#define GOAL g
 
- #define DATA_FILE ../data/map1
+#define DATA_FILE ../data/map
 
 typedef struct d_game_map {
 	char visible[ROWS][COLUMNS];
 	char attribute[ROWS][COLUMNS];
 } d_game_map;
+
+int read_map(d_game_map *map);
