@@ -1,37 +1,107 @@
-At a minimum, your design document should include: 
-Title page with: 
-	o Game name with tagline  
-	o Team  members  
+Design Document for:
 
-Game  overview  
-	o Game  concept  
-	o Feature  set
-	o Genre
-	o Target  audience   
-	o Game  flow  summary - how  does a user play the game?   
-	o Look and feel - what menus do you have, does it have color, etc  
+	"ZZZZZZZZZZZZ: Murder"
 
-Gameplay   
-	o Game progression, mission, or challenge. How does the user win the game?  What is the concept of winning for your game?   
-	o Is the game networked, multiplayer, single?   
-	o What levels, boards, or configurations, screens does the game have?  
+	Developers:
+		Chris Sims
+		Ryan Winters
+		Tanya Burmeister
+		Steve Monette
 
-Mechanics
-	o Rules  
-	o Point system 
-	o How does a player move around and interact with the game? What actions can the player take?  
-	o What are the modules that you will need to create to make the game?   
+	Game overview:
+		Game concept:  Simple adventure side-scroller, where the player has the ability to
+			move around the level, move to the edge of the screen to load a new area, and 
+			reverse gravity.  This is a clone of the game 'VVVVVVVVVVVV'.
+		Feature set:  
+			-  "Top Menu" featuring the game logo/name, options for game play, and an option for showing high scores.
+			-  High Score display with options to return to top menu.
+			-  4 or more game screens to play within.
+			-  play actions include key actions for left, right, reverse gravity, and return to main menu.
+		Genre:   
+			Target audience:  Action/Adventure gamers
+			Game flow summary:  Move the character around a hazard filled maze by going left, right,
+				or by reversing gravity.  Avoiding obsticals, try to reach the end of the maze as fast
+				as possible for higher score bonuses.  Scores may be awared for distance or obstical avoidance.
+			Look and feel:  The game will have a main menu allowing different play modes and basic instructions.
+				We intend to have at least 2 colors to help identify "safe" maze surfaces from "death" surfaces.
+				
+	Gameplay:  
+		Game progression, mission, or challenge: 
+			Run and survive to the end of the maze as fast as possible to prevent, solve, or identify a murder.
+			The game is won by reaching the end of the maze without touching any of the deadly surfaces.
+			The currently design goal is for a 4 screen maze.  The faster the end is reached, the higher the score awarded.
+		This game is currently being developed as a single player game.  
+		Game levels, boards, configurations, and/or screens:
+			-  "Top Menu" featuring the game logo/name, options for game play, and an option for showing high scores.
+			-  High Score display screen with options to return to top menu.
+			-  Play mode of 4 or more game screens to play within.
+			-  Play modes of different difficulty levels based on speed.
 
-Game options  
-	o What options does your game allow?    
-	o Can the user save/load a game?
+	Mechanics:
+		Rules:  
+			- Don't touch hazardous objects or die!
+			- Player may pass between maze screens only through identified openings.
+			- Avoid objects by reversing gravity and moving left and right.
+		Point system:
+			- Basic points awarded for reaching the end of the maze.
+			- Bonus points awarded for speed (maximum bonus decremented as time goes on).
+			- Post beta goal is to have points awarded for intermediate stages of maze completion.
+		Game/player interaction:
+			- Player may move left and right to run along the floor of the maze.
+			- Player may reverse gravity to run along the ceiling of the maze instead.
+			- Player may still move left or right while "drifting" between floor and ceiling.
+		Game modules to create:
+			- Current game state module to track:
+				o current positions of moving objects such as the player or obsticals.
+				o current scoring
+			- Level/maze boundary structure with instances for each maze or level
+			- game engine:
+				o manage movement (take in user input)
+				o determine if contacting hazard or safe zone (compare current game state with maze instance).
+				o display animation (show character motion, boundary, maze screens)
+				o enable menu toggle
+			- high score file and module for determining if score is high enough to be tracked with sorting.
 
-Management  
-	o What is your target schedule for different pieces of the game   
-	o How will your team meet and communicate and how often?   
-	o Which version control system will you be using?   
-	o How will you track bugs and progress?    
-	o How will your demo be organized?
-
-Tsting  
-	o How will you test the game?
+	Game options: 
+		Allowed options:  
+			- Play
+			- Show high scores
+			- Exit
+			- Possibly maze level choices or difficulty level choices.	
+		Save/load a game: 
+			- Feature for later development.  Not a goal for inital release.
+			
+	Management: 
+		Target schedule for different pieces of the game:
+			- Alpha (Feb 25, 2011)
+				o Basic structure for game setup done
+				o One basic box level with character motion implemented
+			- Beta (March 4, 2011)
+				o Obstical recognition
+				o additional levels
+				o game screens (menu and high score displayed and partially functional)
+			- Release (March 10, 2011)
+				o complete game play of 4 levels
+				o functional menu
+				o correct tracking of high scores		 
+		Team meeting and communication:
+			- Feature reviews 2 to 3 times per week.
+			- Updates communcated through springloops site
+		Revision Control System: 
+			git (via Springloops) 
+		Bug and progress tracking:  
+			Springloops (enabling revision control, tickets for bugs and feature requests, milestone tracking) 
+		Demo Plan (goal of 5-10 minutes with questions)
+			Presentation with:
+				- Goals of the game
+				- Display some basic code implementation (structure for game level and instances)
+				- Discuss key challenges and solutions
+				- Where to next, what we would like to add to the game.
+			Play the game and show movements and obstical recognition.
+			Feedback/Questions
+		
+	Testing 
+		- Developers will track expected outcomes for certain actions as well as boundary conditions.
+		- Each individual module will be tested for this action/outcome scenario.
+		- The combined module will be tested for the entire combined developer list.
+		- Code reviews and feature updates will allow other team members to suggest test conditions as well.
