@@ -20,12 +20,13 @@ int main (int argc, char *argv[]) {
 	int test_char;
 
 	init_game(&newgame, &newmap);
-	disp_player();
 	print_map(&newmap);
+	disp_player();
 
 	while(true) {
 		test_char = getch();
 		move_character(test_char);
+		print_map(&newmap);
 	}
 	
 	test_char = getch();
@@ -48,8 +49,13 @@ void init_game (d_game_state *newgame, d_game_map *newmap) {
  	gravity = NORMAL;			//Start right-side up
  	current_row = STARTING_ROW;
 	current_column = STARTING_COLUMN;
+
+	init_pair(1, COLOR_RED, COLOR_BLACK);		//Red danger blocks, with black background
+	init_pair(2, COLOR_YELLOW, COLOR_BLACK);	//goal block
+	init_pair(3, COLOR_GREEN, COLOR_BLACK);		//player character
 }
 
+/*
 void disp_player() {
 	int i, j;
 	move(current_row, current_column);
@@ -66,7 +72,20 @@ void disp_player() {
 	}
 	refresh();
 }
+*/
 
+void disp_player() {
+	move(current_row, current_column);
+	attron(COLOR_PAIR(3));
+	if (gravity == NORMAL)
+		addch(PLAYER_NORM);
+	else
+		addch(PLAYER_REVERSE);
+	attroff(COLOR_PAIR(1));\
+	refresh();
+}
+
+/*
 void blank_character() {
 	int i, j;
 	move(current_row, current_column);
@@ -76,6 +95,13 @@ void blank_character() {
 			printw(" ");	
 		}
 	}
+	refresh();
+}
+*/
+
+void blank_character() {
+	move(current_row, current_column);
+	addch(' ');
 	refresh();
 }
 
