@@ -1,13 +1,9 @@
 /* Filename: game.c
  * Authors: Chris Sims	(add your name here as you edit)
  * Date created: 18 Feb 2011
- * Description: Main game engine source file for zzzzzzzzzzzz 
+ * Description: Main game engine source file for zzzzzzzzzzzz
  */
 
-#include <stdio.h>
-#include <stdbool.h>
-#include <stdlib.h>
-#include <curses.h>
 #include "map.h"
 #include "game.h"
 
@@ -20,6 +16,7 @@ int main (int argc, char *argv[]) {
 	int test_char;
 
 	init_game(&newgame, &newmap);
+	display_intro(&newgame);
 	print_map(&newmap);
 	disp_player();
 
@@ -42,6 +39,7 @@ void init_game (d_game_state *newgame, d_game_map *newmap) {
 	keypad(stdscr, true); 	//enable use of the arrow keys
 	cbreak();				//pass all keypresses, but control characters (like signals)
 	noecho();				//don't echo the characters as the player types
+	curs_set(0);			//Hide the cursor
 
 	read_map(newmap);		//Read the map from the data file
  	newgame->paused = false;
@@ -143,4 +141,26 @@ void toggle_gravity() {
 		gravity = REVERSE;
 	else
 		gravity = NORMAL;
+}
+
+void display_intro (d_game_state *newgame) {
+ 	WINDOW *intro_win;
+ 	int starty = (LINES - INTRO_COLS) / 2;
+ 	int startx = (COLS - INTRO_COLS) / 2;
+
+ 	intro_win = create_newwin(INTRO_ROWS, INTRO_COLS, starty, startx);
+ 	wprintw(intro_win, "Hello there!");
+ 	getch();
+ }
+
+WINDOW *create_newwin(int height, int width, int starty, int startx) {
+	WINDOW *local_win;
+
+	local_win = newwin(height, width, starty, startx);
+	box(local_win, 0 , 0);		/* 0, 0 gives default characters
+					 			* for the vertical and horizontal
+					 			* lines			*/
+	wrefresh(local_win);		/* Show that box 		*/
+
+	return local_win;
 }
