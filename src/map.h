@@ -11,16 +11,21 @@
  * Deadly: game character will die when occupying this spot
  * Goal: player wins the game when occupying this spot
  */
- 
- #define ROWS 24
- #define COLUMNS 80
- #define DEADLY d
- #define BLOCKED b
- #define GOAL g
 
- #define DATA_FILE ../data/map1
+#include <curses.h>
+ 
+#define ROWS 24
+#define COLUMNS 80
+//Map attributes
+#define DEADLY 'd'
+#define BLOCKED 'b'
+#define GOAL 'g'
+#define MAP_PATH "../data/map"
 
 typedef struct d_game_map {
-	char visible[ROWS][COLUMNS];
-	char attribute[ROWS][COLUMNS];
+	char visible[24][80];
+	char attribute[24][80];
 } d_game_map;
+
+int read_map(d_game_map *map);
+int print_map(d_game_map *map);

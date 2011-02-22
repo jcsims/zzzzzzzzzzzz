@@ -17,7 +17,7 @@ typedef struct d_game_state {
 	bool game_complete;
 } d_game_state;
 
-void init_game (d_game_state *newgame);
+void init_game (d_game_state *newgame, d_game_map *newmap);
 void disp_player();
 void blank_character();
 void move_character(int keypress);

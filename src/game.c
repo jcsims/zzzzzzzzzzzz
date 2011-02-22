@@ -16,11 +16,12 @@ static int current_row, current_column, gravity;
 int main (int argc, char *argv[]) {
 
 	d_game_state newgame;
-	//d_game_map newmap;
+	d_game_map newmap;
 	int test_char;
 
-	init_game(&newgame);
+	init_game(&newgame, &newmap);
 	disp_player();
+	print_map(&newmap);
 
 	while(true) {
 		test_char = getch();
@@ -34,12 +35,14 @@ int main (int argc, char *argv[]) {
 	return 0;
 }
 
-void init_game (d_game_state *newgame) {
+void init_game (d_game_state *newgame, d_game_map *newmap) {
  	initscr(); 				//Start ncurses
+ 	start_color();			//Enable use of color
 	keypad(stdscr, true); 	//enable use of the arrow keys
 	cbreak();				//pass all keypresses, but control characters (like signals)
 	noecho();				//don't echo the characters as the player types
 
+	read_map(newmap);		//Read the map from the data file
  	newgame->paused = false;
  	newgame->game_complete = false;
  	gravity = NORMAL;			//Start right-side up
