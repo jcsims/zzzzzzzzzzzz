@@ -1,4 +1,4 @@
-.PHONY: clean
+.PHONY: clean run
 
 CC=gcc
 CFLAGS=-c -Wall -g
@@ -25,3 +25,6 @@ high_score.o: high_score.c high_score.h
 
 clean:
 	rm -f $(BUILDDIR)/*.o $(BUILDDIR)/$(EXECUTABLE)
+
+run:
+	cd bin; ./$(EXECUTABLE)
