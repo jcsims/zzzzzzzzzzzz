@@ -22,6 +22,7 @@
 #define GOAL 'g'
 #define MAP_PATH "../data/map"
 
+
 typedef struct d_game_map {
 	char visible[24][80];
 	char attribute[24][80];

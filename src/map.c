@@ -8,7 +8,6 @@
 #include <stdio.h>
 #include "map.h"
 
-
 int read_map(d_game_map *map) {
 	
 	FILE *inFile;
