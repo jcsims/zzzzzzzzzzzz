@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include "map.h"
 
+
 int read_map(d_game_map *map) {
 	
 	FILE *inFile;
@@ -22,28 +23,27 @@ int read_map(d_game_map *map) {
 
 	for (map_row = 0; map_row < 24; map_row++) {
 		for (map_column = 0; map_column < 80; map_column++) {
-			while(!feof(inFile))
-    		{
-				fscanf(inFile, "%c", &scanned);
+			scanned = fgetc(inFile);
+			if (scanned != '\n')
 		        map->attribute[map_row][map_column] = scanned;
-    		}
+		    else
+		    	map->attribute[map_row][map_column] = 'b';
 		}
 	}
     fclose(inFile);
 
     return 0;
-}
+} 
 
 int print_map(d_game_map *map) {
 	int map_row, map_column;
-	init_pair(1, COLOR_RED, COLOR_BLACK);	//Red danger blocks, with black background
-	init_pair(2, COLOR_YELLOW, COLOR_BLACK);	//goal block
 
 	for (map_row = 0; map_row < 24; map_row++) {
 		for (map_column = 0; map_column < 80; map_column++) {
 			move(map_row, map_column);
 			switch (map->attribute[map_row][map_column]) {
-				case ' ':		//this will be most of the space, so save some comparison
+				case '*':		//this will be most of the space, so save some comparison
+					addch(' ');
 					break;
 				case 'b':
 					attron(A_STANDOUT);
@@ -63,5 +63,6 @@ int print_map(d_game_map *map) {
 			}
 		}
 	}
+	refresh();
 	return 0;
 }
