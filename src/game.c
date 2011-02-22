@@ -23,7 +23,7 @@ int main (int argc, char *argv[]) {
 	while(true) {
 		test_char = getch();
 		move_character(test_char);
-		print_map(&newmap);
+		//print_map(&newmap);
 	}
 	
 	test_char = getch();
