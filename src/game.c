@@ -16,7 +16,7 @@ int main (int argc, char *argv[]) {
 	int test_char;
 
 	init_game(&newgame, &newmap);
-	display_intro(&newgame);
+	display_intro(&newgame); // make function display a window on top of current window
 	print_map(&newmap);
 	disp_player();
 
@@ -144,12 +144,17 @@ void toggle_gravity() {
 }
 
 void display_intro (d_game_state *newgame) {
+
  	WINDOW *intro_win;
+	PANEL *intro_panel;
  	int starty = (LINES - INTRO_COLS) / 2;
  	int startx = (COLS - INTRO_COLS) / 2;
 
  	intro_win = create_newwin(INTRO_ROWS, INTRO_COLS, starty, startx);
  	wprintw(intro_win, "Hello there!");
+	intro_panel = new_panel(intro_win);
+	update_panels();
+	doupdate();
  	getch();
  }
 

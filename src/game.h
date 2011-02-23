@@ -8,7 +8,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <curses.h>
-
+#include <panel.h>
 
 #define NORMAL true	//used for the character being right side up
 #define REVERSE false	//or upside down
