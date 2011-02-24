@@ -18,12 +18,11 @@ int main (int argc, char *argv[]) {
 	init_game(&newgame, &newmap);
 	display_intro(&newgame);
 	print_map(&newmap);
-	disp_player();
+	disp_player(&newmap);
 
 	while(true) {
 		test_char = getch();
-		move_character(test_char);
-		//print_map(&newmap);
+		move_character(test_char, &newmap);
 	}
 	
 	test_char = getch();
@@ -72,14 +71,43 @@ void disp_player() {
 }
 */
 
-void disp_player() {
-	move(current_row, current_column);
+void disp_player(d_game_map *map) {
 	attron(COLOR_PAIR(3));
-	if (gravity == NORMAL)
+	if (gravity == NORMAL) {
+		switch(map->attribute[current_row - 1][current_column]) {
+			case 'b':		//stop falling
+				break;
+			case '*':		//falling through space....
+				current_row--;
+				break;
+			case 'd':
+				you_died();
+				break;
+			case 'g':
+				you_won();
+				break;
+		}
+		move(current_row, current_column);
 		addch(PLAYER_NORM);
-	else
+	}
+	else {
+		switch(map->attribute[current_row + 1][current_column]) {
+			case 'b':		//stop falling
+				break;
+			case '*':		//falling through space....
+				current_row++;
+				break;
+			case 'd':
+				you_died();
+				break;
+			case 'g':
+				you_won();
+				break;
+		}
+		move(current_row, current_column);
 		addch(PLAYER_REVERSE);
-	attroff(COLOR_PAIR(1));\
+	}
+	attroff(COLOR_PAIR(3));
 	refresh();
 }
 
@@ -103,30 +131,35 @@ void blank_character() {
 	refresh();
 }
 
-void move_character(int keypress) {
+void move_character(int keypress, d_game_map *map) {
 	switch (keypress) {
 		case KEY_LEFT:
 			blank_character();
-			current_column--;
-			disp_player();
+			if (map->attribute[current_row][current_column - 1] != 'b')
+				current_column--;
+			disp_player(map);
 			break;
 		
 		case KEY_RIGHT:
 			blank_character();
-			current_column++;
-			disp_player();
+			if (map->attribute[current_row][current_column + 1] != 'b')
+				current_column++;
+			disp_player(map);
 			break;
 
 		case 'z':
 			blank_character();
 			toggle_gravity();
-			disp_player();
+			disp_player(map);
 			break;
 		
 		case 'q':
 			quit_game();
 			break;
 			
+		default:		//used to ensure that we fall with gravity
+			disp_player(map);
+			break;
 	}
 }
 
@@ -163,4 +196,16 @@ WINDOW *create_newwin(int height, int width, int starty, int startx) {
 	wrefresh(local_win);		/* Show that box 		*/
 
 	return local_win;
+}
+
+void you_died() {
+	clear();
+	mvprintw(10,20,"Sorry, you died!  Try not to hit the spikes.");
+	quit_game();
+}
+
+void you_won() {
+	clear();
+	mvprintw(10,20,"Congrats, you won!");
+	quit_game();
 }

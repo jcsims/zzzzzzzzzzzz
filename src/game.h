@@ -27,11 +27,13 @@ typedef struct d_game_state {
 } d_game_state;
 
 void init_game (d_game_state *newgame, d_game_map *newmap);
-void disp_player();
+void disp_player(d_game_map *map);
 void blank_character();
-void move_character(int keypress);
+void move_character(int keypress, d_game_map *map);
 void quit_game();
 void toggle_gravity();
+void you_died();
+void you_won();
 
 void display_intro (d_game_state *newgame);
 WINDOW *create_newwin(int height, int width, int starty, int startx);
