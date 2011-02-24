@@ -4,53 +4,17 @@
  * Description: Various definitions and prototypes for zzzzzzzzzzzz 
  */
 
+#ifndef GAME_H_
+#define GAME_H_
+
 #include <stdio.h>
-#include <stdbool.h>
 #include <stdlib.h>
 #include <curses.h>
-
-
-#define NORMAL true	//used for the character being right side up
-#define REVERSE false	//or upside down
-#define STARTING_ROW 10
-#define STARTING_COLUMN 40
-#define PLAYER_NORM '&'
-#define PLAYER_REVERSE '?'
-#define INTRO_ROWS 10
-#define INTRO_COLS 20
-
-
-
-typedef struct d_game_state {
-	bool paused;
-	bool game_complete;
-} d_game_state;
+#include <sys/time.h>
+#include "map.h"
+#include "engine.h"
 
 void init_game (d_game_state *newgame, d_game_map *newmap);
-void disp_player(d_game_map *map);
-void blank_character();
-void move_character(int keypress, d_game_map *map);
-void quit_game();
-void toggle_gravity();
-void you_died();
-void you_won();
+int set_ticker(int n_msecs);
 
-void display_intro (d_game_state *newgame);
-WINDOW *create_newwin(int height, int width, int starty, int startx);
-
-
-/*Define the game character
-  Normal:
-
-  o
- /|\
- / \
-
- Reversed:
- \ /
- \|/
-  o
- 
- */
-//const char player_normal[3][3] = { {' ','o',' '}, {'/','|','\\'}, {'/',' ','\\'} };
-//const char player_reversed[3][3] = { {'\\',' ','/'}, {'\\','|','/'}, {' ','o',' '} };
+#endif // GAME_H_
