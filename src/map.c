@@ -5,7 +5,6 @@
  * map elements of the game data structure passed to it.
  */
 
-#include <stdio.h>
 #include "map.h"
 
 int read_map(d_game_map *map) {
@@ -37,8 +36,8 @@ int read_map(d_game_map *map) {
 int print_map(d_game_map *map) {
 	int map_row, map_column;
 
-	for (map_row = 0; map_row < 24; map_row++) {
-		for (map_column = 0; map_column < 80; map_column++) {
+	for (map_row = 0; map_row < ROWS; map_row++) {
+		for (map_column = 0; map_column < COLUMNS; map_column++) {
 			move(map_row, map_column);
 			switch (map->attribute[map_row][map_column]) {
 				case '*':		//this will be most of the space, so save some comparison
