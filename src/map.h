@@ -12,6 +12,9 @@
  * Goal: player wins the game when occupying this spot
  */
 
+ #ifndef MAP_H_
+ #define MAP_H_
+
 #include <curses.h>
  
 #define ROWS 24
@@ -30,3 +33,5 @@ typedef struct d_game_map {
 
 int read_map(d_game_map *map);
 int print_map(d_game_map *map);
+
+#endif	// MAP_H_
