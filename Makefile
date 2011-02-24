@@ -3,7 +3,7 @@
 CC=gcc
 CFLAGS=-c -Wall -g
 LDFLAGS=-lcurses
-SOURCES=map.c game.c high_score.c
+SOURCES=map.c game.c high_score.c engine.c
 vpath %.h src
 vpath %.c src
 vpath %.o bin
@@ -21,6 +21,9 @@ game.o: game.c game.h
 	$(CC) $(CFLAGS) $< -o $(BUILDDIR)/$@
 
 high_score.o: high_score.c high_score.h
+	$(CC) $(CFLAGS) $< -o $(BUILDDIR)/$@
+
+engine.o: engine.c engine.h
 	$(CC) $(CFLAGS) $< -o $(BUILDDIR)/$@
 
 clean:
