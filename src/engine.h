@@ -14,6 +14,7 @@
 #include <sys/time.h>
 #include <ncurses.h>
 #include <panel.h>
+#include <unistd.h>		//sleep()
 #include "map.h"
 
 #define NORMAL true	//used for the character being right side up

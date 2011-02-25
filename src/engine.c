@@ -33,6 +33,8 @@ void move_character(int keypress) {
 
 		case KEY_LEFT:
 			blank_character();
+			if (map.attribute[game.current_row][game.current_column - 1] == 'g')
+				you_won();
 			if (map.attribute[game.current_row][game.current_column - 1] != 'b')
 				game.current_column--;
 			disp_player();
@@ -40,6 +42,8 @@ void move_character(int keypress) {
 
 		case KEY_RIGHT:
 			blank_character();
+			if (map.attribute[game.current_row][game.current_column + 1] == 'g')
+				you_won();
 			if (map.attribute[game.current_row][game.current_column + 1] != 'b')
 				game.current_column++;
 			disp_player();
@@ -186,20 +190,26 @@ void blank_character() {
 
 void you_died() {
 	clear();
-	move(10,20);
-	printw("You died. Try not to hit the spikes.");
-	getch();
+	wmove(play_win, 10,20);
+	wprintw(play_win, "You died. Try not to hit the spikes.");
+	wrefresh(play_win);
+	sleep(1);
+	wgetch(play_win);
 	quit_game();
 }
 void you_won() {
 	clear();
-	move(10,20);
-	printw("Congrats, you won!");
-	getch();
+	wmove(play_win, 10,20);
+	wprintw(play_win, "Congrats, you won!");
+	wrefresh(play_win);
+	sleep(1);
+	wgetch(play_win);
 	quit_game();
 }
 
 
+
+//TODO: Deallocate windows and panels on quit!
 void quit_game() {
 	endwin();
 	puts("Thanks for playing!");
