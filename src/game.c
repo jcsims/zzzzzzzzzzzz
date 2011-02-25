@@ -9,6 +9,9 @@
 
 static int current_row, current_column, gravity;
 
+WINDOW *play_win, *intro_win;
+PANEL *play_panel, *intro_panel;
+
 int main (int argc, char *argv[]) {
 
 	d_game_state newgame;
@@ -17,8 +20,19 @@ int main (int argc, char *argv[]) {
 
 	init_game(&newgame, &newmap);
 	display_intro(&newgame); // make function display a window on top of current window
-	print_map(&newmap);
+
+ 	int starty = (LINES - PLAY_ROWS) / 2;
+ 	int startx = (COLS - PLAY_COLS) / 2;
+ 	play_win = create_newwin(PLAY_ROWS, PLAY_COLS, starty, startx);
+ 	print_map(&newmap);
 	disp_player();
+
+	play_panel = new_panel(play_win);
+	update_panels();
+	doupdate();
+/*****************************************************/
+
+
 
 	while(true) {
 		test_char = getch();
@@ -73,14 +87,14 @@ void disp_player() {
 */
 
 void disp_player() {
-	move(current_row, current_column);
-	attron(COLOR_PAIR(3));
+	wmove(play_win, current_row, current_column);
+	wattron(play_win, COLOR_PAIR(3));
 	if (gravity == NORMAL)
-		addch(PLAYER_NORM);
+		waddch(play_win, PLAYER_NORM);
 	else
-		addch(PLAYER_REVERSE);
-	attroff(COLOR_PAIR(1));\
-	refresh();
+		waddch(play_win, PLAYER_REVERSE);
+	wattroff(play_win, COLOR_PAIR(1));
+	wrefresh(play_win);
 }
 
 /*
@@ -98,9 +112,9 @@ void blank_character() {
 */
 
 void blank_character() {
-	move(current_row, current_column);
-	addch(' ');
-	refresh();
+	wmove(play_win, current_row, current_column);
+	waddch(play_win, ' ');
+	wrefresh(play_win);
 }
 
 void move_character(int keypress) {
@@ -122,7 +136,18 @@ void move_character(int keypress) {
 			toggle_gravity();
 			disp_player();
 			break;
-		
+		case 'm': // pause game and go to mentu/intro panel
+			hide_panel(play_panel);
+			show_panel(intro_panel);
+			update_panels();
+			doupdate();
+			break;
+		case 'p': // hide the menu/intro and show the game
+			hide_panel(intro_panel);
+			show_panel(play_panel);
+			update_panels();
+			doupdate();
+			break;			
 		case 'q':
 			quit_game();
 			break;
@@ -145,8 +170,6 @@ void toggle_gravity() {
 
 void display_intro (d_game_state *newgame) {
 
- 	WINDOW *intro_win;
-	PANEL *intro_panel;
  	int starty = (LINES - INTRO_COLS) / 2;
  	int startx = (COLS - INTRO_COLS) / 2;
 

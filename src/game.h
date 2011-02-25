@@ -18,7 +18,8 @@
 #define PLAYER_REVERSE '?'
 #define INTRO_ROWS 10
 #define INTRO_COLS 20
-
+#define PLAY_ROWS 24
+#define PLAY_COLS 80
 
 
 typedef struct d_game_state {
