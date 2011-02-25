@@ -14,7 +14,6 @@
 #include <ncurses.h>
 #include "map.h"
 
-
 #define NORMAL true	//used for the character being right side up
 #define REVERSE false	//or upside down
 #define STARTING_ROW 10
@@ -32,15 +31,18 @@ typedef struct d_game_state {
 	int current_column;
 } d_game_state;
 
+extern d_game_state game;
+extern d_game_map map;
 
-void move_character(int keypress, d_game_map *map, d_game_state *game);
+void alarm_trigger(int signal);
+void move_character(int keypress);
 void quit_game();
-void toggle_gravity(d_game_state *game);
+void toggle_gravity();
 void you_died();
 void you_won();
-void disp_player(d_game_map *map, d_game_state *game);
-void blank_character(d_game_state *game);
-void display_intro (d_game_state *newgame);
+void disp_player();
+void blank_character();
+void display_intro ();
 WINDOW *create_newwin(int height, int width, int starty, int startx);
 
 

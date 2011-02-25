@@ -6,30 +6,40 @@
 
 #include "game.h"
 
+d_game_state game;
+d_game_map map;
+
+
 int main (int argc, char *argv[]) {
 
-	d_game_state newgame;
-	d_game_map newmap;
+	
 	int test_char;
 
-	init_game(&newgame, &newmap);
-	display_intro(&newgame);
-	print_map(&newmap);
-	disp_player(&newmap, &newgame);
+	init_game();
+	display_intro();
+	print_map();
+	disp_player();
+	if (init_alarm_handler()) {
+		perror("alarm handler");
+		exit(1);
+	}
+	if (set_ticker(INTERVAL)) {
+		perror("Set interval timer");
+		exit(1);
+	}
 
 	while(true) {
 		test_char = getch();
-		move_character(test_char, &newmap, &newgame);
+		move_character(test_char);
 	}
 	
-	test_char = getch();
-
+	getch();
 	quit_game();
 	
 	return 0;
 }
 
-void init_game (d_game_state *newgame, d_game_map *newmap) {
+static void init_game () {
  	initscr(); 				//Start ncurses
  	start_color();			//Enable use of color
 	keypad(stdscr, true); 	//enable use of the arrow keys
@@ -37,12 +47,12 @@ void init_game (d_game_state *newgame, d_game_map *newmap) {
 	noecho();				//don't echo the characters as the player types
 	curs_set(0);			//Hide the cursor
 
-	read_map(newmap);		//Read the map from the data file
- 	newgame->paused = false;
- 	newgame->game_complete = false;
- 	newgame->gravity = NORMAL;			//Start right-side up
- 	newgame->current_row = STARTING_ROW;
-	newgame->current_column = STARTING_COLUMN;
+	read_map();		//Read the map from the data file
+ 	game.paused = false;
+ 	game.game_complete = false;
+ 	game.gravity = NORMAL;			//Start right-side up
+ 	game.current_row = STARTING_ROW;
+	game.current_column = STARTING_COLUMN;
 
 	init_pair(1, COLOR_RED, COLOR_BLACK);		//Red danger blocks, with black background
 	init_pair(2, COLOR_YELLOW, COLOR_BLACK);	//goal block
@@ -62,4 +72,20 @@ int set_ticker( int n_msecs ){
         new_timeset.it_value.tv_usec    = n_usecs ;     /* and this         */
 
 	return setitimer(ITIMER_REAL, &new_timeset, NULL);
+}
+
+static int init_alarm_handler() {
+	struct sigaction handler;
+	sigset_t blocked;
+
+	handler.sa_handler = alarm_trigger;		//trigger function to call move_character
+	handler.sa_flags = 0;			//Don't need any options
+
+	//Block SIGINT
+	sigemptyset(&blocked);
+	sigaddset(&blocked, SIGINT);
+
+	handler.sa_mask = blocked;
+
+	return sigaction (SIGALRM, &handler, NULL);
 }

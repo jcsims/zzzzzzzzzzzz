@@ -7,7 +7,7 @@
 
 #include "map.h"
 
-int read_map(d_game_map *map) {
+int read_map() {
 	
 	FILE *inFile;
     char scanned;
@@ -23,9 +23,9 @@ int read_map(d_game_map *map) {
 		for (map_column = 0; map_column < 80; map_column++) {
 			scanned = fgetc(inFile);
 			if (scanned != '\n')
-		        map->attribute[map_row][map_column] = scanned;
+		        map.attribute[map_row][map_column] = scanned;
 		    else
-		    	map->attribute[map_row][map_column] = 'b';
+		    	map.attribute[map_row][map_column] = 'b';
 		}
 	}
     fclose(inFile);
@@ -33,13 +33,13 @@ int read_map(d_game_map *map) {
     return 0;
 } 
 
-int print_map(d_game_map *map) {
+int print_map() {
 	int map_row, map_column;
 
 	for (map_row = 0; map_row < ROWS; map_row++) {
 		for (map_column = 0; map_column < COLUMNS; map_column++) {
 			move(map_row, map_column);
-			switch (map->attribute[map_row][map_column]) {
+			switch (map.attribute[map_row][map_column]) {
 				case '*':		//this will be most of the space, so save some comparison
 					addch(' ');
 					break;

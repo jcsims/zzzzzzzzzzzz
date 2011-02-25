@@ -12,8 +12,8 @@
  * Goal: player wins the game when occupying this spot
  */
 
- #ifndef MAP_H_
- #define MAP_H_
+#ifndef MAP_H_
+#define MAP_H_
 
 #include <curses.h>
  
@@ -26,12 +26,15 @@
 #define MAP_PATH "../data/map"
 
 
+
 typedef struct d_game_map {
 	char visible[24][80];
 	char attribute[24][80];
 } d_game_map;
 
-int read_map(d_game_map *map);
-int print_map(d_game_map *map);
+extern d_game_map map;
+
+int read_map();
+int print_map();
 
 #endif	// MAP_H_

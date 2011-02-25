@@ -6,46 +6,58 @@
 
 #include "engine.h"
 
-void move_character(int keypress, d_game_map *map, d_game_state *game) {
+void alarm_trigger(int signal) {
+	move_character( (int) 'f');
+}
+
+void move_character(int keypress) {
 	switch (keypress) {
 		case KEY_LEFT:
-			blank_character(game);
-			if (map->attribute[game->current_row][game->current_column - 1] != 'b')
-				game->current_column--;
-			disp_player(map, game);
+			blank_character();
+			if (map.attribute[game.current_row][game.current_column - 1] != 'b')
+				game.current_column--;
+			disp_player();
 			break;
 		
 		case KEY_RIGHT:
-			blank_character(game);
-			if (map->attribute[game->current_row][game->current_column + 1] != 'b')
-				game->current_column++;
-			disp_player(map, game);
+			blank_character();
+			if (map.attribute[game.current_row][game.current_column + 1] != 'b')
+				game.current_column++;
+			disp_player();
 			break;
 
 		case 'z':
-			blank_character(game);
-			toggle_gravity(game);
-			disp_player(map, game);
+			if (map.attribute[game.current_row + 1][game.current_column] == 'b') {
+				blank_character();
+				toggle_gravity();
+				disp_player();
+			}
+			else if (map.attribute[game.current_row - 1][game.current_column] == 'b') {
+				blank_character();
+				toggle_gravity();
+				disp_player();
+			}
 			break;
 		
 		case 'q':
 			quit_game();
 			break;
 			
-		default:		//used to ensure that we fall with gravity
-			disp_player(map, game);
+		case 'f':		//used to ensure that we fall with gravity
+			blank_character();
+			disp_player();
 			break;
 	}
 }
 
-void disp_player(d_game_map *map, d_game_state *game) {
+void disp_player() {
 	attron(COLOR_PAIR(3));
-	if (game->gravity == NORMAL) {
-		switch(map->attribute[game->current_row - 1][game->current_column]) {
+	if (game.gravity == NORMAL) {
+		switch(map.attribute[game.current_row - 1][game.current_column]) {
 			case 'b':		//stop falling
 				break;
 			case '*':		//falling through space....
-				game->current_row--;
+				game.current_row--;
 				break;
 			case 'd':
 				you_died();
@@ -54,15 +66,15 @@ void disp_player(d_game_map *map, d_game_state *game) {
 				you_won();
 				break;
 		}
-		move(game->current_row, game->current_column);
+		move(game.current_row, game.current_column);
 		addch(PLAYER_NORM);
 	}
 	else {
-		switch(map->attribute[game->current_row + 1][game->current_column]) {
+		switch(map.attribute[game.current_row + 1][game.current_column]) {
 			case 'b':		//stop falling
 				break;
 			case '*':		//falling through space....
-				game->current_row++;
+				game.current_row++;
 				break;
 			case 'd':
 				you_died();
@@ -71,15 +83,15 @@ void disp_player(d_game_map *map, d_game_state *game) {
 				you_won();
 				break;
 		}
-		move(game->current_row, game->current_column);
+		move(game.current_row, game.current_column);
 		addch(PLAYER_REVERSE);
 	}
 	attroff(COLOR_PAIR(3));
 	refresh();
 }
 
-void blank_character(d_game_state *game) {
-	move(game->current_row, game->current_column);
+void blank_character() {
+	move(game.current_row, game.current_column);
 	addch(' ');
 	refresh();
 }
@@ -106,11 +118,11 @@ WINDOW *create_newwin(int height, int width, int starty, int startx) {
 	return local_win;
 }
 
-void toggle_gravity(d_game_state *game) {
-	if (game->gravity == NORMAL)
-		game->gravity = REVERSE;
+void toggle_gravity() {
+	if (game.gravity == NORMAL)
+		game.gravity = REVERSE;
 	else
-		game->gravity = NORMAL;
+		game.gravity = NORMAL;
 }
 
 /*

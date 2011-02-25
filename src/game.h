@@ -11,10 +11,15 @@
 #include <stdlib.h>
 #include <curses.h>
 #include <sys/time.h>
+#include <signal.h>
 #include "map.h"
 #include "engine.h"
 
-void init_game (d_game_state *newgame, d_game_map *newmap);
+//msecs
+#define INTERVAL 500
+
+static void init_game ();
 int set_ticker(int n_msecs);
+static int init_alarm_handler();
 
 #endif // GAME_H_
