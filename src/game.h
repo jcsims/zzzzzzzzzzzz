@@ -10,17 +10,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <curses.h>
-#include <sys/time.h>
 #include <signal.h>
 #include <panel.h>
 #include "map.h"
 #include "engine.h"
 
-//msecs
-#define INTERVAL 500
-
 static void init_game ();
-int set_ticker(int n_msecs);
 static int init_alarm_handler();
 static void display_intro ();
 

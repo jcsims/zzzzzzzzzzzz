@@ -13,15 +13,19 @@ PANEL *play_panel, *intro_panel;
 
 int main (int argc, char *argv[]) {
 
-	
-	int test_char;
-	int starty = (LINES - PLAY_ROWS) / 2;
- 	int startx = (COLS - PLAY_COLS) / 2;
-
 	init_game();
 	display_intro();	// make function display a window on top of current window
+	//hide_panel(intro_panel);
+	play_win = create_newwin(PLAY_ROWS, PLAY_COLS, 0, 0);
+	play_panel = new_panel(play_win);
+ 	update_panels();
+	doupdate();
+	show_panel(play_panel);
 	print_map();
- 	play_win = create_newwin(PLAY_ROWS, PLAY_COLS, starty, startx);
+	disp_player();
+	
+	//update_panels();
+	//doupdate();
 
 	if (init_alarm_handler()) {
 		perror("alarm handler");
@@ -32,14 +36,8 @@ int main (int argc, char *argv[]) {
 		exit(1);
 	}
 
-	play_panel = new_panel(play_win);
-	update_panels();
-	doupdate();
-/*****************************************************/
-
 	while(true) {
-		test_char = getch();
-		move_character(test_char);
+		move_character(getch());
 	}
 	
 	getch();
@@ -49,6 +47,8 @@ int main (int argc, char *argv[]) {
 }
 
 static void init_game () {
+	
+
  	initscr(); 				//Start ncurses
  	start_color();			//Enable use of color
 	keypad(stdscr, true); 	//enable use of the arrow keys
@@ -66,20 +66,6 @@ static void init_game () {
 	init_pair(1, COLOR_RED, COLOR_BLACK);		//Red danger blocks, with black background
 	init_pair(2, COLOR_YELLOW, COLOR_BLACK);	//goal block
 	init_pair(3, COLOR_GREEN, COLOR_BLACK);		//player character
-}
-
-int set_ticker( int n_msecs ){
-        struct itimerval new_timeset;
-        long    n_sec, n_usecs;
-
-        n_sec = n_msecs / 1000 ;		/* int part	*/
-        n_usecs = ( n_msecs % 1000 ) * 1000L ;	/* remainder	*/
-        new_timeset.it_interval.tv_sec  = n_sec;        /* set reload       */
-        new_timeset.it_interval.tv_usec = n_usecs;      /* new ticker value */
-        new_timeset.it_value.tv_sec     = n_sec  ;      /* store this       */
-        new_timeset.it_value.tv_usec    = n_usecs ;     /* and this         */
-
-	return setitimer(ITIMER_REAL, &new_timeset, NULL);
 }
 
 static int init_alarm_handler() {
@@ -105,8 +91,8 @@ static void display_intro () {
 
  	intro_win = create_newwin(INTRO_ROWS, INTRO_COLS, starty, startx);
  	wprintw(intro_win, "Hello there!");
-	intro_panel = new_panel(intro_win);
-	update_panels();
+ 	intro_panel = new_panel(intro_win);
+ 	update_panels();
 	doupdate();
- 	getch();
+	getch();
  }

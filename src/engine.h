@@ -11,6 +11,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <signal.h>
+#include <sys/time.h>
 #include <ncurses.h>
 #include <panel.h>
 #include "map.h"
@@ -25,6 +26,8 @@
 #define INTRO_COLS 20
 #define PLAY_ROWS 24
 #define PLAY_COLS 80
+//msecs
+#define INTERVAL 500
 
 typedef struct d_game_state {
 	bool paused;
@@ -40,6 +43,7 @@ extern WINDOW *play_win, *intro_win;
 extern PANEL *play_panel, *intro_panel;
 
 void alarm_trigger(int signal);
+int set_ticker(int n_msecs);
 void move_character(int keypress);
 void quit_game();
 void toggle_gravity();

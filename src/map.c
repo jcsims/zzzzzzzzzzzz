@@ -65,6 +65,7 @@ int print_map() {
 			}
 		}
 	}
-	wrefresh(play_win);
+	update_panels();
+	doupdate();
 	return 0;
 }

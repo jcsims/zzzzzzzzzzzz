@@ -16,6 +16,7 @@
 #define MAP_H_
 
 #include <curses.h>
+#include <panel.h>
  
 #define ROWS 24
 #define COLUMNS 80
@@ -34,6 +35,7 @@ typedef struct d_game_map {
 
 extern d_game_map map;
 extern WINDOW *play_win;
+extern PANEL *play_panel;
 
 int read_map();
 int print_map();
