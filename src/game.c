@@ -59,7 +59,7 @@ static void init_game () {
 	read_map();		//Read the map from the data file
  	game.paused = false;
  	game.game_complete = false;
- 	game.gravity = NORMAL;			//Start right-side up
+ 	game.gravity = REVERSE;			//Start right-side up
  	game.current_row = STARTING_ROW;
 	game.current_column = STARTING_COLUMN;
 
@@ -85,12 +85,18 @@ static int init_alarm_handler() {
 }
 
 static void display_intro () {
+	int max_x, max_y, starty, startx;
 
- 	int starty = (LINES - INTRO_COLS) / 2;
- 	int startx = (COLS - INTRO_COLS) / 2;
+	getmaxyx(stdscr, max_y, max_x);
+
+ 	starty = (max_y - INTRO_ROWS) / 2;
+ 	startx = (max_x - INTRO_COLS) / 2;
 
  	intro_win = create_newwin(INTRO_ROWS, INTRO_COLS, starty, startx);
- 	wprintw(intro_win, "Hello there!");
+ 	wmove(intro_win, 2,4);
+ 	wprintw(intro_win, "ZZZZZZZZZZZZ:Murder!");
+ 	wmove(intro_win, 10,4);
+ 	wprintw(intro_win, "Hit any key to play.");
  	intro_panel = new_panel(intro_win);
  	update_panels();
 	doupdate();

@@ -22,12 +22,12 @@
 #define STARTING_COLUMN 40
 #define PLAYER_NORM '&'
 #define PLAYER_REVERSE '?'
-#define INTRO_ROWS 10
-#define INTRO_COLS 20
+#define INTRO_ROWS 15
+#define INTRO_COLS 30
 #define PLAY_ROWS 24
 #define PLAY_COLS 80
 //msecs
-#define INTERVAL 500
+#define INTERVAL 350
 
 typedef struct d_game_state {
 	bool paused;
