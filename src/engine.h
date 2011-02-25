@@ -12,6 +12,7 @@
 #include <stdbool.h>
 #include <signal.h>
 #include <ncurses.h>
+#include <panel.h>
 #include "map.h"
 
 #define NORMAL true	//used for the character being right side up
@@ -22,6 +23,8 @@
 #define PLAYER_REVERSE '?'
 #define INTRO_ROWS 10
 #define INTRO_COLS 20
+#define PLAY_ROWS 24
+#define PLAY_COLS 80
 
 typedef struct d_game_state {
 	bool paused;
@@ -33,6 +36,8 @@ typedef struct d_game_state {
 
 extern d_game_state game;
 extern d_game_map map;
+extern WINDOW *play_win, *intro_win;
+extern PANEL *play_panel, *intro_panel;
 
 void alarm_trigger(int signal);
 void move_character(int keypress);
@@ -42,7 +47,7 @@ void you_died();
 void you_won();
 void disp_player();
 void blank_character();
-void display_intro ();
+
 WINDOW *create_newwin(int height, int width, int starty, int startx);
 
 

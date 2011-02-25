@@ -33,6 +33,7 @@ typedef struct d_game_map {
 } d_game_map;
 
 extern d_game_map map;
+extern WINDOW *play_win;
 
 int read_map();
 int print_map();

@@ -1,11 +1,15 @@
 /* Filename: map.c
  * Authors: Chris Sims	(add your name here as you edit)
+			T.Burmeister
  * Date created: 17 Feb 2011
+ * Edits:
+		24 Feb 2011 - maping now drawn in window using w[ncursefunc](play_win, [ncurses func attributes]) 
  * Description: read in and process the map data file, making populating the
  * map elements of the game data structure passed to it.
  */
 
 #include "map.h"
+
 
 int read_map() {
 	
@@ -38,29 +42,29 @@ int print_map() {
 
 	for (map_row = 0; map_row < ROWS; map_row++) {
 		for (map_column = 0; map_column < COLUMNS; map_column++) {
-			move(map_row, map_column);
+			wmove(play_win, map_row, map_column);
 			switch (map.attribute[map_row][map_column]) {
 				case '*':		//this will be most of the space, so save some comparison
-					addch(' ');
+					waddch(play_win,' ');
 					break;
 				case 'b':
-					attron(A_STANDOUT);
-					addch(' ');
-					attroff(A_STANDOUT);
+					wattron(play_win, A_STANDOUT);
+					waddch(play_win, ' ');
+					wattroff(play_win, A_STANDOUT);
 					break;
 				case 'd':
-					attron(A_BLINK | COLOR_PAIR(1));
-					addch('^');
-					attroff(A_BLINK | COLOR_PAIR(1));
+					wattron(play_win, A_BLINK | COLOR_PAIR(1));
+					waddch(play_win, '^');
+					wattroff(play_win, A_BLINK | COLOR_PAIR(1));
 					break;
 				case 'g':
-					attron(COLOR_PAIR(2));
-					addch('@');
-					attroff(COLOR_PAIR(2));
+					wattron(play_win, COLOR_PAIR(2));
+					waddch(play_win, '@');
+					wattroff(play_win, COLOR_PAIR(2));
 					break;
 			}
 		}
 	}
-	refresh();
+	wrefresh(play_win);
 	return 0;
 }

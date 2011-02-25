@@ -8,17 +8,21 @@
 
 d_game_state game;
 d_game_map map;
-
+WINDOW *play_win, *intro_win;
+PANEL *play_panel, *intro_panel;
 
 int main (int argc, char *argv[]) {
 
 	
 	int test_char;
+	int starty = (LINES - PLAY_ROWS) / 2;
+ 	int startx = (COLS - PLAY_COLS) / 2;
 
 	init_game();
-	display_intro();
+	display_intro();	// make function display a window on top of current window
 	print_map();
-	disp_player();
+ 	play_win = create_newwin(PLAY_ROWS, PLAY_COLS, starty, startx);
+
 	if (init_alarm_handler()) {
 		perror("alarm handler");
 		exit(1);
@@ -27,6 +31,11 @@ int main (int argc, char *argv[]) {
 		perror("Set interval timer");
 		exit(1);
 	}
+
+	play_panel = new_panel(play_win);
+	update_panels();
+	doupdate();
+/*****************************************************/
 
 	while(true) {
 		test_char = getch();
@@ -65,7 +74,6 @@ int set_ticker( int n_msecs ){
 
         n_sec = n_msecs / 1000 ;		/* int part	*/
         n_usecs = ( n_msecs % 1000 ) * 1000L ;	/* remainder	*/
-
         new_timeset.it_interval.tv_sec  = n_sec;        /* set reload       */
         new_timeset.it_interval.tv_usec = n_usecs;      /* new ticker value */
         new_timeset.it_value.tv_sec     = n_sec  ;      /* store this       */
@@ -89,3 +97,16 @@ static int init_alarm_handler() {
 
 	return sigaction (SIGALRM, &handler, NULL);
 }
+
+static void display_intro () {
+
+ 	int starty = (LINES - INTRO_COLS) / 2;
+ 	int startx = (COLS - INTRO_COLS) / 2;
+
+ 	intro_win = create_newwin(INTRO_ROWS, INTRO_COLS, starty, startx);
+ 	wprintw(intro_win, "Hello there!");
+	intro_panel = new_panel(intro_win);
+	update_panels();
+	doupdate();
+ 	getch();
+ }

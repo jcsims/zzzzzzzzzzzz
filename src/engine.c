@@ -12,13 +12,18 @@ void alarm_trigger(int signal) {
 
 void move_character(int keypress) {
 	switch (keypress) {
+		case 'f':		//used to ensure that we fall with gravity
+			blank_character();
+			disp_player();
+			break;
+
 		case KEY_LEFT:
 			blank_character();
 			if (map.attribute[game.current_row][game.current_column - 1] != 'b')
 				game.current_column--;
 			disp_player();
 			break;
-		
+
 		case KEY_RIGHT:
 			blank_character();
 			if (map.attribute[game.current_row][game.current_column + 1] != 'b')
@@ -38,20 +43,29 @@ void move_character(int keypress) {
 				disp_player();
 			}
 			break;
-		
+
+		case 'm': // pause game and go to mentu/intro panel
+			hide_panel(play_panel);
+			show_panel(intro_panel);
+			update_panels();
+			doupdate();
+			break;
+
+		case 'p': // hide the menu/intro and show the game
+			hide_panel(intro_panel);
+			show_panel(play_panel);
+			update_panels();
+			doupdate();
+			break;
+
 		case 'q':
 			quit_game();
-			break;
-			
-		case 'f':		//used to ensure that we fall with gravity
-			blank_character();
-			disp_player();
 			break;
 	}
 }
 
 void disp_player() {
-	attron(COLOR_PAIR(3));
+	wattron(play_win, COLOR_PAIR(3));
 	if (game.gravity == NORMAL) {
 		switch(map.attribute[game.current_row - 1][game.current_column]) {
 			case 'b':		//stop falling
@@ -66,8 +80,8 @@ void disp_player() {
 				you_won();
 				break;
 		}
-		move(game.current_row, game.current_column);
-		addch(PLAYER_NORM);
+		wmove(play_win, game.current_row, game.current_column);
+		waddch(play_win,PLAYER_NORM);
 	}
 	else {
 		switch(map.attribute[game.current_row + 1][game.current_column]) {
@@ -83,28 +97,18 @@ void disp_player() {
 				you_won();
 				break;
 		}
-		move(game.current_row, game.current_column);
-		addch(PLAYER_REVERSE);
+		wmove(play_win, game.current_row, game.current_column);
+		waddch(play_win, PLAYER_REVERSE);
 	}
-	attroff(COLOR_PAIR(3));
-	refresh();
+	wattroff(play_win, COLOR_PAIR(3));
+	wrefresh(play_win);
 }
 
 void blank_character() {
-	move(game.current_row, game.current_column);
-	addch(' ');
-	refresh();
+	wmove(play_win, game.current_row, game.current_column);
+	waddch(play_win, ' ');
+	wrefresh(play_win);
 }
-
-void display_intro (d_game_state *newgame) {
- 	WINDOW *intro_win;
- 	int starty = (LINES - INTRO_COLS) / 2;
- 	int startx = (COLS - INTRO_COLS) / 2;
-
- 	intro_win = create_newwin(INTRO_ROWS, INTRO_COLS, starty, startx);
- 	wprintw(intro_win, "Hello there!");
- 	getch();
- }
 
 WINDOW *create_newwin(int height, int width, int starty, int startx) {
 	WINDOW *local_win;
