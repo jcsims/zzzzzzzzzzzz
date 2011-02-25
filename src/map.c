@@ -23,8 +23,8 @@ int read_map() {
 		return 1;
 	}
 
-	for (map_row = 0; map_row < 24; map_row++) {
-		for (map_column = 0; map_column < 80; map_column++) {
+	for (map_row = 0; map_row < ROWS; map_row++) {
+		for (map_column = 0; map_column < COLUMNS; map_column++) {
 			scanned = fgetc(inFile);
 			if (scanned != '\n')
 		        map.attribute[map_row][map_column] = scanned;
