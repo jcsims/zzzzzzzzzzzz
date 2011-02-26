@@ -1,7 +1,12 @@
 /* Filename: map.h
  * Authors: Chris Sims	(add your name here as you edit)
+ *			S.Monette
  * Date created: 17 Feb 2011
  * Description: Various definitiions and function prototypes used in map.c
+ *	Edits:
+ *		26Feb2011 - add #define EGRESS 'e' attribute for entry/exit portals on maps
+					change #define MAP_PATH from map to map02 
+ *
  */
 
 /* Definitions to make the code readable: easy to change row and column 
@@ -24,7 +29,9 @@
 #define DEADLY 'd'
 #define BLOCKED 'b'
 #define GOAL 'g'
-#define MAP_PATH "../data/map"
+#define EGRESS 'e'
+#define MAP_PATH "../data/map02"
+//#define MAP_PATH "../data/map"
 
 
 
