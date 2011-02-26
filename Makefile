@@ -6,18 +6,15 @@ LDFLAGS=-lpanel -lcurses
 SOURCES=map.c game.c high_score.c engine.c
 vpath %.h src
 vpath %.c src
-vpath %.o Zbin
-BUILDDIR=Zbin 
+vpath %.o bin
+BUILDDIR=bin
 OBJECTS=$(SOURCES:.c=.o)
 EXECUTABLE=zzzzzzzzzzzz
 
-all: $(BUILDDIR)/$(EXECUTABLE)
-
-$(BUILDDIR)/$(EXECUTABLE): $(OBJECTS)
-	cd $(BUILDDIR); $(CC) $(LDFLAGS) $(OBJECTS) -o $(EXECUTABLE)
+$(EXECUTABLE): $(OBJECTS)
+	cd bin; $(CC) $(LDFLAGS) $(OBJECTS) -o $@
 	
 map.o: map.c map.h
-	if [ ! -d $(BUILDDIR) ]; then mkdir $(BUILDDIR); fi
 	$(CC) $(CFLAGS) $< -o $(BUILDDIR)/$@
 
 game.o: game.c game.h
@@ -30,6 +27,7 @@ engine.o: engine.c engine.h
 	$(CC) $(CFLAGS) $< -o $(BUILDDIR)/$@
 
 clean:
-	rm -rf $(BUILDDIR)
+	rm -f $(BUILDDIR)/*.o $(BUILDDIR)/$(EXECUTABLE)
+
 run:
-	cd $(BUILDDIR); ./$(EXECUTABLE)
+	cd bin; ./$(EXECUTABLE)
