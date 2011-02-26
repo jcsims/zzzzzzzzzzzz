@@ -7,7 +7,7 @@ SOURCES=map.c game.c high_score.c engine.c
 vpath %.h src
 vpath %.c src
 vpath %.o Zbin
-BUILDDIR=Zbin
+BUILDDIR=Zbin 
 OBJECTS=$(SOURCES:.c=.o)
 EXECUTABLE=zzzzzzzzzzzz
 
