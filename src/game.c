@@ -1,7 +1,10 @@
 /* Filename: game.c
- * Authors: Chris Sims	(add your name here as you edit)
+ * Authors: Chris Sims (add your name here as you edit)
+ *			S.Monette
  * Date created: 18 Feb 2011
  * Description: Main loop file for zzzzzzzzzzzz
+ *	Edits:
+ *		26Feb2011 - added (init_pair 4) for the entry/exit portals 'e'
  */
 
 #include "game.h"
@@ -66,6 +69,7 @@ static void init_game () {
 	init_pair(1, COLOR_RED, COLOR_BLACK);		//Red danger blocks, with black background
 	init_pair(2, COLOR_YELLOW, COLOR_BLACK);	//goal block
 	init_pair(3, COLOR_GREEN, COLOR_BLACK);		//player character
+	init_pair(4, COLOR_BLACK, COLOR_BLACK);		//entry/exit portals 'e' on the maps
 }
 
 static int init_alarm_handler() {
