@@ -19,7 +19,7 @@ int main (int argc, char *argv[]) {
 	init_game();
 	display_intro();	// make function display a window on top of current window
 	//hide_panel(intro_panel);
-	play_win = create_newwin(PLAY_ROWS, PLAY_COLS, 0, 0);
+	play_win = create_newwin(game.max_rows, game.max_cols, 0, 0);
 	play_panel = new_panel(play_win);
  	update_panels();
 	doupdate();
@@ -59,12 +59,14 @@ static void init_game () {
 	noecho();				//don't echo the characters as the player types
 	curs_set(0);			//Hide the cursor
 
-	read_map();		//Read the map from the data file
- 	game.paused = false;
+	game.paused = false;
  	game.game_complete = false;
  	game.gravity = REVERSE;			//Start right-side up
  	game.current_row = STARTING_ROW;
 	game.current_column = STARTING_COLUMN;
+	game.max_rows = PLAY_ROWS;
+	game.max_cols = PLAY_COLS;
+	read_map();		//Read the map from the data file
 
 	init_pair(1, COLOR_RED, COLOR_BLACK);		//Red danger blocks, with black background
 	init_pair(2, COLOR_YELLOW, COLOR_BLACK);	//goal block
