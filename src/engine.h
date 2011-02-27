@@ -16,27 +16,7 @@
 #include <panel.h>
 #include <unistd.h>		//sleep()
 #include "map.h"
-
-#define NORMAL true	//used for the character being right side up
-#define REVERSE false	//or upside down
-#define STARTING_ROW 10
-#define STARTING_COLUMN 40
-#define PLAYER_NORM '&'
-#define PLAYER_REVERSE '?'
-#define INTRO_ROWS 15
-#define INTRO_COLS 30
-#define PLAY_ROWS 24
-#define PLAY_COLS 80
-//msecs
-#define INTERVAL 350
-
-typedef struct d_game_state {
-	bool paused;
-	bool game_complete;
-	int gravity;
-	int current_row;
-	int current_column;
-} d_game_state;
+#include "defs.h"
 
 extern d_game_state game;
 extern d_game_map map;
@@ -52,7 +32,6 @@ void you_died();
 void you_won();
 void disp_player();
 void blank_character();
-
 WINDOW *create_newwin(int height, int width, int starty, int startx);
 
 

@@ -14,6 +14,7 @@
 #include <panel.h>
 #include "map.h"
 #include "engine.h"
+#include "defs.h"
 
 static void init_game ();
 static int init_alarm_handler();

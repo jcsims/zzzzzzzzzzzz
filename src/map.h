@@ -15,6 +15,7 @@
  * Blocked: game character cannot occupy the spot
  * Deadly: game character will die when occupying this spot
  * Goal: player wins the game when occupying this spot
+ * Egress: transition to another map area
  */
 
 #ifndef MAP_H_
@@ -22,24 +23,10 @@
 
 #include <curses.h>
 #include <panel.h>
- 
-#define ROWS 24
-#define COLUMNS 80
-//Map attributes
-#define DEADLY 'd'
-#define BLOCKED 'b'
-#define GOAL 'g'
-#define EGRESS 'e'
-#define MAP_PATH "../data/map02"
-//#define MAP_PATH "../data/map"
+#include "engine.h"
+#include "defs.h"
 
-
-
-typedef struct d_game_map {
-	char visible[24][80];
-	char attribute[24][80];
-} d_game_map;
-
+extern d_game_state game;
 extern d_game_map map;
 extern WINDOW *play_win;
 extern PANEL *play_panel;
