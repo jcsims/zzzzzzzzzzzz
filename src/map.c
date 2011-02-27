@@ -25,8 +25,8 @@ int read_map() {
 		return 1;
 	}
 
-	for (map_row = 0; map_row < ROWS; map_row++) {
-		for (map_column = 0; map_column < COLUMNS; map_column++) {
+	for (map_row = 0; map_row < game.max_rows - 1; map_row++) {
+		for (map_column = 0; map_column < game.max_cols; map_column++) {
 			scanned = fgetc(inFile);
 			if (scanned != '\n')
 		        map.attribute[map_row][map_column] = scanned;
@@ -42,8 +42,8 @@ int read_map() {
 int print_map() {
 	int map_row, map_column;
 
-	for (map_row = 0; map_row < ROWS; map_row++) {
-		for (map_column = 0; map_column < COLUMNS; map_column++) {
+	for (map_row = 0; map_row < game.max_rows - 1; map_row++) {
+		for (map_column = 0; map_column < game.max_cols; map_column++) {
 			wmove(play_win, map_row, map_column);
 			switch (map.attribute[map_row][map_column]) {
 				case '*':		//this will be most of the space, so save some comparison
