@@ -124,6 +124,7 @@ void disp_player() {
 		waddch(play_win, PLAYER_REVERSE);
 	}
 	wattroff(play_win, COLOR_PAIR(3));
+	wmove(play_win, game.max_rows - 1, game.max_cols - 1);
 	wrefresh(play_win);
 }
 
