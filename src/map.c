@@ -1,9 +1,11 @@
 /* Filename: map.c
- * Authors: Chris Sims	(add your name here as you edit)
+ * Authors: Chris Sims (add your name here as you edit)
 			T.Burmeister
+			S.Monette
  * Date created: 17 Feb 2011
  * Edits:
-		24 Feb 2011 - maping now drawn in window using w[ncursefunc](play_win, [ncurses func attributes]) 
+		24 Feb 2011 - maping now drawn in window using w[ncursefunc](play_win, [ncurses func attributes])
+		26Feb2011 - add case 'e' to print_map() to draw egress portals
  * Description: read in and process the map data file, making populating the
  * map elements of the game data structure passed to it.
  */
@@ -23,8 +25,8 @@ int read_map() {
 		return 1;
 	}
 
-	for (map_row = 0; map_row < 24; map_row++) {
-		for (map_column = 0; map_column < 80; map_column++) {
+	for (map_row = 0; map_row < ROWS; map_row++) {
+		for (map_column = 0; map_column < COLUMNS; map_column++) {
 			scanned = fgetc(inFile);
 			if (scanned != '\n')
 		        map.attribute[map_row][map_column] = scanned;
@@ -61,6 +63,11 @@ int print_map() {
 					wattron(play_win, COLOR_PAIR(2));
 					waddch(play_win, '@');
 					wattroff(play_win, COLOR_PAIR(2));
+					break;
+				case 'e':
+					wattron(play_win, COLOR_PAIR(4));
+					waddch(play_win, 'e');
+					wattroff(play_win, COLOR_PAIR(4));
 					break;
 			}
 		}
