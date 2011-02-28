@@ -1,7 +1,8 @@
 /* Filename: defs.h
  * Authors: Chris Sims	(add your name here as you edit)
  * Date created: 26 Feb 2011
- * Description: Header for zzzzzzzzzzzz
+ * Description: Header for zzzzzzzzzzzz.  Used for defines needed in
+ * multiple files.
  */
 
 #ifndef DEFS_H_

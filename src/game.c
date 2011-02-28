@@ -39,7 +39,7 @@ int main (int argc, char *argv[]) {
 		exit(1);
 	}
 
-	while(true) {
+	while(true) {	//Main game loop
 		move_character(getch());
 	}
 	
