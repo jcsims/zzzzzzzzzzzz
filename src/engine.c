@@ -5,6 +5,7 @@
  */
 
 #include "engine.h"
+#include "defs.h"
 
 void alarm_trigger(int signal) {
 	move_character( (int) 'f');
