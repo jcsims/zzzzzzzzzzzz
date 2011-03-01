@@ -102,6 +102,7 @@ void create_hs_win(char name[20])
 	set_ticker(0);
 	echo();
 	mvgetstr(3, 54, name);
+	wrefresh(high_score_win);
 }
 
 
@@ -111,6 +112,8 @@ int process_high_score(int score)
     init_score_struct(&list);
     check_score(&list, score);
     write_high_score(&list);
+	delwin(high_score_win);
 
     return 1;
 }
+

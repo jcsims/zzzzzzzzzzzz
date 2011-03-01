@@ -213,11 +213,11 @@ void you_won() {
 
 //TODO: Deallocate windows and panels on quit!
 void quit_game() {
+	process_high_score(201); //this score will need to be eventually replaced with w/e score variable we setup
 	del_panel(intro_panel);
 	del_panel(play_panel);
 	delwin(intro_win);
 	delwin(play_win);
-	process_high_score(201); //this score will need to be eventually replaced with w/e score variable we setup
 	endwin();
 	puts("Thanks for playing!");
 	exit(0);
