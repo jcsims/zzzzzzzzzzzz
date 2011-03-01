@@ -21,8 +21,8 @@
 
 extern d_game_state game;
 extern d_game_map map;
-extern WINDOW *play_win, *intro_win;
-extern PANEL *play_panel, *intro_panel;
+extern WINDOW *play_win, *intro_win, *status_win;
+extern PANEL *play_panel, *intro_panel, *status_panel;
 
 void alarm_trigger(int signal);
 int set_ticker(int n_msecs);
@@ -33,6 +33,8 @@ void you_died();
 void you_won();
 void disp_player();
 void blank_character();
+void init_status_bar();
+void update_status_bar();
 WINDOW *create_newwin(int height, int width, int starty, int startx);
 
 

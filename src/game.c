@@ -11,8 +11,8 @@
 
 d_game_state game;
 d_game_map map;
-WINDOW *play_win, *intro_win;
-PANEL *play_panel, *intro_panel;
+WINDOW *play_win, *intro_win, *status_win;
+PANEL *play_panel, *intro_panel, *status_panel;
 
 int main (int argc, char *argv[]) {
 
@@ -24,6 +24,7 @@ int main (int argc, char *argv[]) {
 	doupdate();
 	print_map();
 	disp_player();
+	init_status_bar();
 	
 	//update_panels();
 	//doupdate();
@@ -64,7 +65,10 @@ static void init_game () {
 	game.current_column = STARTING_COLUMN;
 	game.max_rows = PLAY_ROWS;
 	game.max_cols = PLAY_COLS;
+	game.time = 0;
+	game.score = INIT_SCORE;
 	read_map();		//Read the map from the data file
+
 
 	init_pair(1, COLOR_RED, COLOR_BLACK);		//Red danger blocks, with black background
 	init_pair(2, COLOR_YELLOW, COLOR_BLACK);	//goal block
@@ -97,6 +101,9 @@ static void display_intro () {
  	startx = (max_x - INTRO_COLS) / 2;
 
  	intro_win = create_newwin(INTRO_ROWS, INTRO_COLS, starty, startx);
+ 	box(intro_win, 0 , 0);		/* 0, 0 gives default characters
+					 			* for the vertical and horizontal
+					 			* lines			*/
  	wmove(intro_win, 2,4);
  	wprintw(intro_win, "ZZZZZZZZZZZZ:Murder!");
  	wmove(intro_win, 10,4);

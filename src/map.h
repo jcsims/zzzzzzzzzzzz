@@ -28,8 +28,8 @@
 
 extern d_game_state game;
 extern d_game_map map;
-extern WINDOW *play_win;
-extern PANEL *play_panel;
+extern WINDOW *play_win, *status_win;
+extern PANEL *play_panel, *status_panel;
 
 int read_map();
 int print_map();

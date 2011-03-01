@@ -18,8 +18,12 @@
 #define PLAYER_REVERSE '?'
 #define INTRO_ROWS 15
 #define INTRO_COLS 30
+#define STATUS_ROWS 1
+#define STATUS_COLS 80
 //msecs
-#define INTERVAL 350
+#define INTERVAL 250
+#define INIT_SCORE 5000
+#define GOAL_PTS 5000
 
 //Map attributes
 #define DEADLY 'd'
@@ -37,6 +41,8 @@ typedef struct d_game_state {
 	int current_column;
 	int max_rows;
 	int max_cols;
+	int time;
+	int score;
 } d_game_state;
 
 typedef struct d_game_map {

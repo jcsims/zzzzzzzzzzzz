@@ -8,6 +8,7 @@
 #include "defs.h"
 
 void alarm_trigger(int signal) {
+	update_status_bar();
 	move_character( (int) 'f');
 }
 
@@ -23,6 +24,25 @@ int set_ticker( int n_msecs ){
         new_timeset.it_value.tv_usec    = n_usecs ;     /* and this         */
 
 	return setitimer(ITIMER_REAL, &new_timeset, NULL);
+}
+
+void init_status_bar() {
+	status_win = create_newwin(STATUS_ROWS, STATUS_COLS, 23, 0);
+}
+
+void update_status_bar() {
+	static int count = 0;
+	count++;
+	if (count == 4) {
+		game.time++;
+		count = 0;
+		if (game.score > 0) {
+			game.score--;
+		}
+	}
+	wmove(status_win, 0,0);
+	wprintw(status_win, "Time elapsed: %d Current score: %d", game.time, game.score);
+	wrefresh(status_win);
 }
 
 void move_character(int keypress) {
@@ -140,9 +160,7 @@ WINDOW *create_newwin(int height, int width, int starty, int startx) {
 	local_win = newwin(height, width, starty, startx);
 	if (!local_win)
 		printw("Error allocating new window");
-	box(local_win, 0 , 0);		/* 0, 0 gives default characters
-					 			* for the vertical and horizontal
-					 			* lines			*/
+	
 	wrefresh(local_win);		/* Show that box 		*/
 
 	return local_win;
@@ -200,6 +218,7 @@ void you_died() {
 	quit_game();
 }
 void you_won() {
+	game.score += GOAL_PTS;
 	wmove(play_win, 10,20);
 	wprintw(play_win, "Congrats, you won!");
 	wmove(play_win, game.max_rows, game.max_cols);
@@ -213,7 +232,7 @@ void you_won() {
 
 //TODO: Deallocate windows and panels on quit!
 void quit_game() {
-	process_high_score(201); //this score will need to be eventually replaced with w/e score variable we setup
+	process_high_score(game.score);
 	del_panel(intro_panel);
 	del_panel(play_panel);
 	delwin(intro_win);
