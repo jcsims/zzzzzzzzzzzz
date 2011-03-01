@@ -8,7 +8,7 @@
 #ifndef DEFS_H_
 #define DEFS_H_
 
-#define PLAY_ROWS 24
+#define PLAY_ROWS 23
 #define PLAY_COLS 80
 #define NORMAL true	//used for the character being right side up
 #define REVERSE false	//or upside down
