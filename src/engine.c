@@ -219,7 +219,9 @@ void quit_game() {
 	delwin(intro_win);
 	delwin(play_win);
 	endwin();
+	system("echo ****High Scores****");
 	puts("Thanks for playing!");
+	system("cat ../data/high_scores");
 	exit(0);
 }
 
