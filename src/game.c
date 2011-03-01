@@ -18,12 +18,10 @@ int main (int argc, char *argv[]) {
 
 	init_game();
 	display_intro();	// make function display a window on top of current window
-	//hide_panel(intro_panel);
 	play_win = create_newwin(game.max_rows, game.max_cols, 0, 0);
 	play_panel = new_panel(play_win);
  	update_panels();
 	doupdate();
-	show_panel(play_panel);
 	print_map();
 	disp_player();
 	
