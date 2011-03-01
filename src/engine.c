@@ -191,18 +191,18 @@ void blank_character() {
 */
 
 void you_died() {
-	clear();
 	wmove(play_win, 10,20);
 	wprintw(play_win, "You died. Try not to hit the spikes.");
+	wmove(play_win, game.max_rows, game.max_cols);
 	wrefresh(play_win);
 	sleep(1);
 	wgetch(play_win);
 	quit_game();
 }
 void you_won() {
-	clear();
 	wmove(play_win, 10,20);
 	wprintw(play_win, "Congrats, you won!");
+	wmove(play_win, game.max_rows, game.max_cols);
 	wrefresh(play_win);
 	sleep(1);
 	wgetch(play_win);
@@ -213,6 +213,10 @@ void you_won() {
 
 //TODO: Deallocate windows and panels on quit!
 void quit_game() {
+	del_panel(intro_panel);
+	del_panel(play_panel);
+	delwin(intro_win);
+	delwin(play_win);
 	endwin();
 	puts("Thanks for playing!");
 	exit(0);
