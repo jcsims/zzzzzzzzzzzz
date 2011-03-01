@@ -16,6 +16,7 @@
 #include <panel.h>
 #include <unistd.h>		//sleep()
 #include "map.h"
+#include "high_score.h"
 
 #define NORMAL true	//used for the character being right side up
 #define REVERSE false	//or upside down
