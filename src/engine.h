@@ -17,6 +17,7 @@
 #include <unistd.h>		//sleep()
 #include "map.h"
 #include "defs.h"
+#include "high_score.h"
 
 extern d_game_state game;
 extern d_game_map map;

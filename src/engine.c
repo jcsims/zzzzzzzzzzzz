@@ -217,6 +217,7 @@ void quit_game() {
 	del_panel(play_panel);
 	delwin(intro_win);
 	delwin(play_win);
+	process_high_score(201); //this score will need to be eventually replaced with w/e score variable we setup
 	endwin();
 	puts("Thanks for playing!");
 	exit(0);
