@@ -97,7 +97,7 @@ void create_hs_win(char name[20])
 	wmove(high_score_win, 2, 25);
 	wprintw(high_score_win, "Congrats you got a high score!!!");
 	wmove(high_score_win, 3, 25);
-	wprintw(high_score_win, "Plese enter your first name: ");
+	wprintw(high_score_win, "Please enter your first name: ");
 	wrefresh(high_score_win);
 	set_ticker(0);
 	echo();
