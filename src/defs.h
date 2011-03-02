@@ -10,8 +10,8 @@
 
 #define NORMAL true	//used for the character being right side up
 #define REVERSE false	//or upside down
-#define STARTING_ROW 10
-#define STARTING_COLUMN 40
+#define STARTING_ROW 1
+#define STARTING_COLUMN 73
 #define PLAYER_NORM '&'
 #define PLAYER_REVERSE '?'
 //Window sizes
@@ -34,7 +34,7 @@
 #define BLOCKED 'b'
 #define GOAL 'g'
 #define EGRESS 'e'
-#define MAP_PATH "../data/map02"
+#define MAP_PATH "../data/map03"
 //#define MAP_PATH "../data/map"
 
 typedef struct d_game_state {
