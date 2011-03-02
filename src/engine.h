@@ -21,8 +21,8 @@
 
 extern d_game_state game;
 extern d_game_map map;
-extern WINDOW *play_win, *intro_win, *status_win;
-extern PANEL *play_panel, *intro_panel, *status_panel;
+extern WINDOW *play_win, *intro_win, *status_win, *pause_win;
+extern PANEL *play_panel, *intro_panel, *status_panel, *pause_panel;
 
 void alarm_trigger(int signal);
 int set_ticker(int n_msecs);
@@ -35,6 +35,8 @@ void disp_player();
 void blank_character();
 void init_status_bar();
 void update_status_bar();
+void init_pause_menu();
+void toggle_pause_menu();
 WINDOW *create_newwin(int height, int width, int starty, int startx);
 
 

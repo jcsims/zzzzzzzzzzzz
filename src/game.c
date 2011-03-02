@@ -11,8 +11,8 @@
 
 d_game_state game;
 d_game_map map;
-WINDOW *play_win, *intro_win, *status_win;
-PANEL *play_panel, *intro_panel, *status_panel;
+WINDOW *play_win, *intro_win, *status_win, *pause_win;
+PANEL *play_panel, *intro_panel, *status_panel, *pause_panel;
 
 int main (int argc, char *argv[]) {
 

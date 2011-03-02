@@ -28,6 +28,9 @@ int set_ticker( int n_msecs ){
 
 void init_status_bar() {
 	status_win = create_newwin(STATUS_ROWS, STATUS_COLS, 23, 0);
+	status_panel = new_panel(status_win);
+ 	update_panels();
+	doupdate();
 }
 
 void update_status_bar() {
@@ -43,6 +46,53 @@ void update_status_bar() {
 	wmove(status_win, 0,0);
 	wprintw(status_win, "Time elapsed: %d Current score: %d", game.time, game.score);
 	wrefresh(status_win);
+}
+
+void init_pause_menu() {
+	int max_x, max_y, starty, startx;
+
+	getmaxyx(stdscr, max_y, max_x);
+
+ 	starty = (max_y - PAUSE_ROWS) / 2;
+ 	startx = (max_x - PAUSE_COLS) / 2;
+
+ 	pause_win = create_newwin(PAUSE_ROWS, PAUSE_COLS, starty, startx);
+ 	box(pause_win, 0 , 0);		/* 0, 0 gives default characters
+					 			* for the vertical and horizontal
+					 			* lines			*/
+ 	wmove(pause_win, 2,4);
+ 	wprintw(pause_win, "ZZZZZZZZZZZZ:Murder!");
+ 	wmove(pause_win, 10,4);
+ 	wprintw(pause_win, "Hit p to continue.");
+ 	pause_panel = new_panel(pause_win);
+ 	update_panels();
+	doupdate();
+	getch();
+}
+
+void toggle_pause_menu() {
+	char input;
+	if (!pause_win) {
+		init_pause_menu();
+	}
+	if (game.paused) {
+		hide_panel(pause_panel);
+		update_panels();
+		doupdate();
+		set_ticker(INTERVAL);
+		game.paused = false;
+	}
+	else if (!game.paused) {
+		set_ticker(0);
+		show_panel(pause_panel);
+		update_panels();
+		doupdate();
+		game.paused = true;
+		do {
+			input = getch();
+		} while (input != 'p');
+		toggle_pause_menu();
+	}
 }
 
 void move_character(int keypress) {
@@ -83,22 +133,17 @@ void move_character(int keypress) {
 			}
 			break;
 
-		case 'm': // pause game and go to mentu/intro panel
+		/*case 'm': // pause game and go to mentu/intro panel
 			game.paused = true;
 			set_ticker(0);
 			hide_panel(play_panel);
 			show_panel(intro_panel);
 			update_panels();
 			doupdate();
-			break;
+			break; */
 
 		case 'p': // hide the menu/intro and show the game
-			game.paused = false;
-			set_ticker(INTERVAL);
-			hide_panel(intro_panel);
-			show_panel(play_panel);
-			update_panels();
-			doupdate();
+			toggle_pause_menu();
 			break;
 
 		case 'q':
@@ -235,8 +280,12 @@ void quit_game() {
 	process_high_score(game.score);
 	del_panel(intro_panel);
 	del_panel(play_panel);
+	del_panel(status_panel);
+	del_panel(pause_panel);
 	delwin(intro_win);
 	delwin(play_win);
+	delwin(status_win);
+	delwin(pause_win);
 	endwin();
 	system("echo ****High Scores****");
 	puts("Thanks for playing!");

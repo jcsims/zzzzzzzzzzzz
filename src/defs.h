@@ -8,20 +8,24 @@
 #ifndef DEFS_H_
 #define DEFS_H_
 
-#define PLAY_ROWS 23
-#define PLAY_COLS 80
 #define NORMAL true	//used for the character being right side up
 #define REVERSE false	//or upside down
 #define STARTING_ROW 10
 #define STARTING_COLUMN 40
 #define PLAYER_NORM '&'
 #define PLAYER_REVERSE '?'
+//Window sizes
+#define PLAY_ROWS 23
+#define PLAY_COLS 80
 #define INTRO_ROWS 15
 #define INTRO_COLS 30
+#define PAUSE_ROWS 15
+#define PAUSE_COLS 30
 #define STATUS_ROWS 1
 #define STATUS_COLS 80
 //msecs
 #define INTERVAL 250
+//Score values
 #define INIT_SCORE 5000
 #define GOAL_PTS 5000
 
