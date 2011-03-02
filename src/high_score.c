@@ -47,21 +47,24 @@ int check_score(high_score *temp, int tmpint)
         if(tmpint > atoi(temp->score[i]))
         {
             create_hs_win(name);
-            strcpy(tmpname, temp->name[i]);
-            strcpy(tmpscore, temp->score[i]);
-            strcpy(temp->name[i], name);
-            sprintf(score, "%d", tmpint);
-            strcpy(temp->score[i], score);
+			if(strcmp(name, ""))
+			{
+            	strcpy(tmpname, temp->name[i]);
+            	strcpy(tmpscore, temp->score[i]);
+            	strcpy(temp->name[i], name);
+            	sprintf(score, "%d", tmpint);
+            	strcpy(temp->score[i], score);
 
-            for(j = i+1; j < 10; j++)
-            {
-                strcpy(tmpname2 ,temp->name[j]);
-                strcpy(tmpscore2 ,temp->score[j]);
-                strcpy(temp->name[j], tmpname);
-                strcpy(temp->score[j], tmpscore);
-                strcpy(tmpname, tmpname2);
-                strcpy(tmpscore, tmpscore2);
-            }
+            	for(j = i+1; j < 10; j++)
+            	{
+                	strcpy(tmpname2 ,temp->name[j]);
+                	strcpy(tmpscore2 ,temp->score[j]);
+                	strcpy(temp->name[j], tmpname);
+                	strcpy(temp->score[j], tmpscore);
+                	strcpy(tmpname, tmpname2);
+                	strcpy(tmpscore, tmpscore2);
+            	}
+			}
             return 1;
         }
     }
