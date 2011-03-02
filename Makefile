@@ -26,7 +26,7 @@ game.o: game.c game.h
 high_score.o: high_score.c high_score.h
 	$(CC) $(CFLAGS) $< -o $(BUILDDIR)/$@
 
-engine.o: engine.c engine.h
+engine.o: engine.c engine.h defs.h
 	$(CC) $(CFLAGS) $< -o $(BUILDDIR)/$@
 
 clean:
