@@ -99,23 +99,29 @@ void move_character(int keypress) {
 	switch (keypress) {
 		case 'f':		//used to ensure that we fall with gravity
 			blank_character();
+			if (game.gravity == NORMAL) {
+				if (check_spot(game.current_row - 1, game.current_column)) {
+					game.current_row--;
+				}
+			}
+			else {
+				if (check_spot(game.current_row + 1, game.current_column)) {
+					game.current_row++;
+				}
+			}
 			disp_player();
 			break;
 
 		case KEY_LEFT:
 			blank_character();
-			if (map.attribute[game.current_row][game.current_column - 1] == 'g')
-				you_won();
-			if (map.attribute[game.current_row][game.current_column - 1] != 'b')
+			if (check_spot(game.current_row, game.current_column - 1))
 				game.current_column--;
 			disp_player();
 			break;
 
 		case KEY_RIGHT:
 			blank_character();
-			if (map.attribute[game.current_row][game.current_column + 1] == 'g')
-				you_won();
-			if (map.attribute[game.current_row][game.current_column + 1] != 'b')
+			if (check_spot(game.current_row, game.current_column + 1))
 				game.current_column++;
 			disp_player();
 			break;
@@ -133,15 +139,6 @@ void move_character(int keypress) {
 			}
 			break;
 
-		/*case 'm': // pause game and go to mentu/intro panel
-			game.paused = true;
-			set_ticker(0);
-			hide_panel(play_panel);
-			show_panel(intro_panel);
-			update_panels();
-			doupdate();
-			break; */
-
 		case 'p': // hide the menu/intro and show the game
 			toggle_pause_menu();
 			break;
@@ -152,40 +149,34 @@ void move_character(int keypress) {
 	}
 }
 
+bool check_spot(int row, int col) {
+	switch (map.attribute[row][col]) {
+		case 'b':		//stop falling
+			return false;
+			break;
+		case '*':		//falling through space....
+			return true;
+			break;
+		case 'd':
+			you_died();
+			break;
+		case 'g':
+			you_won();
+			break;
+		case 'e':		//TODO: Add transition case here
+			return false;
+			break;
+	}
+	return false;	//Shouldn't ever get here...Added to remove compiler warning
+}
+
 void disp_player() {
 	wattron(play_win, COLOR_PAIR(3));
+	wmove(play_win, game.current_row, game.current_column);
 	if (game.gravity == NORMAL) {
-		switch(map.attribute[game.current_row - 1][game.current_column]) {
-			case 'b':		//stop falling
-				break;
-			case '*':		//falling through space....
-				game.current_row--;
-				break;
-			case 'd':
-				you_died();
-				break;
-			case 'g':
-				you_won();
-				break;
-		}
-		wmove(play_win, game.current_row, game.current_column);
-		waddch(play_win,PLAYER_NORM);
+		waddch(play_win, PLAYER_NORM);
 	}
 	else {
-		switch(map.attribute[game.current_row + 1][game.current_column]) {
-			case 'b':		//stop falling
-				break;
-			case '*':		//falling through space....
-				game.current_row++;
-				break;
-			case 'd':
-				you_died();
-				break;
-			case 'g':
-				you_won();
-				break;
-		}
-		wmove(play_win, game.current_row, game.current_column);
 		waddch(play_win, PLAYER_REVERSE);
 	}
 	wattroff(play_win, COLOR_PAIR(3));

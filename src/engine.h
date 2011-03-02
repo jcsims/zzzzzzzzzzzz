@@ -27,6 +27,7 @@ extern PANEL *play_panel, *intro_panel, *status_panel, *pause_panel;
 void alarm_trigger(int signal);
 int set_ticker(int n_msecs);
 void move_character(int keypress);
+bool check_spot(int row, int col);  //true - ok to move, false - can't move there
 void quit_game();
 void toggle_gravity();
 void you_died();
