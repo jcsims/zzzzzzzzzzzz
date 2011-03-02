@@ -16,17 +16,17 @@ all: $(BUILDDIR)/$(EXECUTABLE)
 $(BUILDDIR)/$(EXECUTABLE): $(OBJECTS)
 	cd $(BUILDDIR); $(CC) $(LDFLAGS) $(OBJECTS) -o $(EXECUTABLE)
 	
-map.o: map.c map.h
+map.o: map.c map.h defs.h
 	if [ ! -d $(BUILDDIR) ]; then mkdir $(BUILDDIR); fi
 	$(CC) $(CFLAGS) $< -o $(BUILDDIR)/$@
 
-game.o: game.c game.h
+game.o: game.c game.h defs.h
 	$(CC) $(CFLAGS) $< -o $(BUILDDIR)/$@
 
-high_score.o: high_score.c high_score.h
+high_score.o: high_score.c high_score.h defs.h
 	$(CC) $(CFLAGS) $< -o $(BUILDDIR)/$@
 
-engine.o: engine.c engine.h
+engine.o: engine.c engine.h defs.h
 	$(CC) $(CFLAGS) $< -o $(BUILDDIR)/$@
 
 clean:
