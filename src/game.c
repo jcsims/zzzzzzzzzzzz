@@ -76,6 +76,7 @@ static void init_game () {
 	init_pair(2, COLOR_YELLOW, COLOR_BLACK);	//goal block
 	init_pair(3, COLOR_GREEN, COLOR_BLACK);		//player character
 	init_pair(4, COLOR_BLACK, COLOR_BLACK);		//entry/exit portals 'e' on the maps
+	init_pair(5, COLOR_CYAN, COLOR_BLACK);
 }
 
 static int init_alarm_handler() {

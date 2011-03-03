@@ -76,6 +76,16 @@ int print_map() {
 					waddch(play_win, '^');
 					wattroff(play_win, A_BLINK | COLOR_PAIR(1));
 					break;
+				case GRAVITYBAR_HORZ:
+					wattron(play_win, COLOR_PAIR(5));
+					waddch(play_win, '-');
+					wattroff(play_win, COLOR_PAIR(5));
+					break;
+				case GRAVITYBAR_VERT:
+					wattron(play_win, COLOR_PAIR(5));
+					waddch(play_win, '|');
+					wattroff(play_win, COLOR_PAIR(5));
+					break;
 				case GOAL:
 					wattron(play_win, COLOR_PAIR(2));
 					waddch(play_win, '@');

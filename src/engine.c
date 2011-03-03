@@ -160,6 +160,18 @@ bool check_spot(int row, int col) {
 		case DEADLY:
 			you_died();
 			break;
+		case GRAVITYBAR_HORZ:
+			blank_character();
+			toggle_gravity();
+			disp_player();
+			return false;
+			break;
+		case GRAVITYBAR_VERT:
+			blank_character();
+			toggle_gravity();
+			disp_player();
+			return false;
+			break;
 		case GOAL:
 			you_won();
 			break;

@@ -30,6 +30,8 @@
 #define GOAL_PTS 5000
 
 //Map attributes
+#define GRAVITYBAR_HORZ '-'
+#define GRAVITYBAR_VERT '|'
 #define DEADLY 'd'
 #define BLOCKED 'b'
 #define GOAL 'g'
