@@ -40,21 +40,4 @@ void init_pause_menu();
 void toggle_pause_menu();
 WINDOW *create_newwin(int height, int width, int starty, int startx);
 
-
-/*Define the game character
-  Normal:
-
-  o
- /|\
- / \
-
- Reversed:
- \ /
- \|/
-  o
- 
- */
-//const char player_normal[3][3] = { {' ','o',' '}, {'/','|','\\'}, {'/',' ','\\'} };
-//const char player_reversed[3][3] = { {'\\',' ','/'}, {'\\','|','/'}, {' ','o',' '} };
-
 #endif // ENGINE_H_

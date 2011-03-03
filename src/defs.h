@@ -33,9 +33,13 @@
 #define DEADLY 'd'
 #define BLOCKED 'b'
 #define GOAL 'g'
-#define EGRESS 'e'
-#define MAP_PATH "../data/map03"
-//#define MAP_PATH "../data/map"
+#define UP 'u'
+#define DOWN 'e'
+#define LEFT 'l'
+#define RIGHT 'r'
+#define EMPTY '*'
+#define START_WORLD_ROW 0
+#define START_WORLD_COL 0
 
 typedef struct d_game_state {
 	bool paused;
@@ -50,8 +54,9 @@ typedef struct d_game_state {
 } d_game_state;
 
 typedef struct d_game_map {
-	char visible[24][80];
-	char attribute[24][80];
+	int world_row;
+	int world_col;
+	char attribute[2][3][24][80];
 } d_game_map;
 
 #endif //DEFS_H_

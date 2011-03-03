@@ -127,12 +127,12 @@ void move_character(int keypress) {
 			break;
 
 		case 'z':
-			if (map.attribute[game.current_row + 1][game.current_column] == 'b') {
+			if (map.attribute[map.world_row][map.world_col][game.current_row + 1][game.current_column] == 'b') {
 				blank_character();
 				toggle_gravity();
 				disp_player();
 			}
-			else if (map.attribute[game.current_row - 1][game.current_column] == 'b') {
+			else if (map.attribute[map.world_row][map.world_col][game.current_row - 1][game.current_column] == 'b') {
 				blank_character();
 				toggle_gravity();
 				disp_player();
@@ -150,21 +150,42 @@ void move_character(int keypress) {
 }
 
 bool check_spot(int row, int col) {
-	switch (map.attribute[row][col]) {
-		case 'b':		//stop falling
+	switch (map.attribute[map.world_row][map.world_col][row][col]) {
+		case BLOCKED:		//stop falling
 			return false;
 			break;
-		case '*':		//falling through space....
+		case EMPTY:		//falling through space....
 			return true;
 			break;
-		case 'd':
+		case DEADLY:
 			you_died();
 			break;
-		case 'g':
+		case GOAL:
 			you_won();
 			break;
-		case 'e':		//TODO: Add transition case here
-			return false;
+		case UP:
+			map.world_row--;
+			game.current_row = 23;
+			print_map();
+			return true;
+			break;
+		case DOWN:
+			map.world_row++;
+			game.current_row = 0;
+			print_map();
+			return true;
+			break;
+		case RIGHT:
+			map.world_col++;
+			game.current_column = 0;
+			print_map();
+			return true;
+			break;
+		case LEFT:
+			map.world_col--;
+			game.current_column = 80;
+			print_map();
+			return true;
 			break;
 	}
 	return false;	//Shouldn't ever get here...Added to remove compiler warning
@@ -209,41 +230,6 @@ void toggle_gravity() {
 		game.gravity = NORMAL;
 }
 
-/*
-void disp_player() {
-	int i, j;
-	move(current_row, current_column);
-	for (i = 0; i < 3; i++) {
-		for (j = 0; j < 3; j++) {
-			move(current_row + i, current_column + j);
-			if (gravity == NORMAL){
-				printw("%c", player_normal[i][j]);		
-			}
-			else {
-				printw("%c", player_reversed[i][j]);
-			}
-		}
-	}
-	refresh();
-}
-*/
-
-
-
-/*
-void blank_character() {
-	int i, j;
-	move(current_row, current_column);
-	for (i = 0; i < 3; i++) {
-		for (j = 0; j < 3; j++) {
-			move(current_row + i, current_column + j);
-			printw(" ");	
-		}
-	}
-	refresh();
-}
-*/
-
 void you_died() {
 	wmove(play_win, 10,20);
 	wprintw(play_win, "You died. Try not to hit the spikes.");
@@ -264,9 +250,6 @@ void you_won() {
 	quit_game();
 }
 
-
-
-//TODO: Deallocate windows and panels on quit!
 void quit_game() {
 	process_high_score(game.score);
 	del_panel(intro_panel);

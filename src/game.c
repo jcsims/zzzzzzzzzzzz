@@ -67,7 +67,9 @@ static void init_game () {
 	game.max_cols = PLAY_COLS;
 	game.time = 0;
 	game.score = INIT_SCORE;
-	read_map();		//Read the map from the data file
+	read_maps();		//Read the map from the data files
+	map.world_row = START_WORLD_ROW;
+	map.world_col = START_WORLD_COL;
 
 
 	init_pair(1, COLOR_RED, COLOR_BLACK);		//Red danger blocks, with black background

@@ -26,12 +26,28 @@
 #include "engine.h"
 #include "defs.h"
 
+#define MAP0 "../data/map00"
+#define MAP1 "../data/map01"
+#define MAP2 "../data/map02"
+#define MAP3 "../data/map03"
+#define MAP4 "../data/map04"
+#define MAP5 "../data/map05"
+
+/* World Map
++----+----+----+
+| 00 | 01 | 02 |
++----+----+----+
+| 03 | 04 | 05 |
++----+----+----+
+*/
+
 extern d_game_state game;
 extern d_game_map map;
 extern WINDOW *play_win, *status_win;
 extern PANEL *play_panel, *status_panel;
 
-int read_map();
+int read_maps();
+int read_map_cell(char *map_path);
 int print_map();
 
 #endif	// MAP_H_
