@@ -14,15 +14,17 @@
 #include <sys/time.h>
 #include <ncurses.h>
 #include <panel.h>
+#include <menu.h>
 #include <unistd.h>		//sleep()
 #include "map.h"
 #include "defs.h"
 #include "high_score.h"
+#include "gmenu.h"
 
 extern d_game_state game;
 extern d_game_map map;
-extern WINDOW *play_win, *intro_win, *status_win, *pause_win;
-extern PANEL *play_panel, *intro_panel, *status_panel, *pause_panel;
+extern WINDOW *play_win, *intro_win, *status_win, *pause_win, *high_score_win, *gmenu_win;
+extern PANEL *play_panel, *intro_panel, *status_panel, *pause_panel, *high_score_panel, *gmenu_panel;
 
 void alarm_trigger(int signal);
 int set_ticker(int n_msecs);
