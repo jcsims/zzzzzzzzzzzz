@@ -1,4 +1,5 @@
-/* Filename: high_score.c
+/*
+ Filename: high_score.c
  * Authors: Chris Sims	(add your name here as you edit)
  * Date created: 18 Feb 2011
  * Description: Read in and save the game high score info 
@@ -9,6 +10,7 @@
 #include "high_score.h"
 
 WINDOW *high_score_win;
+//PANEL *high_score_panel;
 
 int init_score_struct(high_score *temp)
 {
@@ -96,7 +98,9 @@ int write_high_score(high_score *temp)
 void create_hs_win(char name[20])
 {
 	high_score_win = create_newwin(PLAY_ROWS, PLAY_COLS, 0, 0);
-
+//	high_score_panel = new_panel(high_score_win);
+//	update_panels();
+//	doupdate();
 	wmove(high_score_win, 2, 25);
 	wprintw(high_score_win, "Congrats you got a high score!!!");
 	wmove(high_score_win, 3, 25);

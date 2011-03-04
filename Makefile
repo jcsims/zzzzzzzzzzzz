@@ -2,7 +2,7 @@
 
 CC=gcc
 CFLAGS=-c -Wall -g
-LDFLAGS=-lpanel -lcurses
+LDFLAGS=-lpanel -lcurses -lmenu
 SOURCES=map.c game.c high_score.c engine.c
 vpath %.h src
 vpath %.c src
