@@ -62,6 +62,7 @@ static void init_game () {
 }
 
 static void play_game() {
+	dealloc_menu();
 	play_win = create_newwin(game.max_rows, game.max_cols, 0, 0);
 	play_panel = new_panel(play_win);
  	update_panels();

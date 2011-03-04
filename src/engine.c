@@ -280,7 +280,6 @@ void you_won() {
 
 void quit_game() {
 	process_high_score(game.score);
-	//dealloc_menu();
 	del_panel(play_panel);
 	del_panel(status_panel);
 	del_panel(pause_panel);
