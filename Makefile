@@ -1,4 +1,4 @@
-.PHONY: clean run
+.PHONY: clean run all
 
 CC=gcc
 CFLAGS=-c -Wall -g

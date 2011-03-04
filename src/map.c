@@ -72,9 +72,9 @@ int print_map() {
 					wattroff(play_win, A_STANDOUT);
 					break;
 				case DEADLY:
-					wattron(play_win, A_BLINK | COLOR_PAIR(1));
+					wattron(play_win, COLOR_PAIR(1));
 					waddch(play_win, '^');
-					wattroff(play_win, A_BLINK | COLOR_PAIR(1));
+					wattroff(play_win, COLOR_PAIR(1));
 					break;
 				case GRAVITYBAR_HORZ:
 					wattron(play_win, COLOR_PAIR(5));
