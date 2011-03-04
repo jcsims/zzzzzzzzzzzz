@@ -62,6 +62,8 @@ void init_pause_menu() {
 					 			* lines			*/
  	wmove(pause_win, 2,4);
  	wprintw(pause_win, "ZZZZZZZZZZZZ:Murder!");
+ 	wmove(pause_win, 9, 7);
+ 	wprintw(pause_win, "Paused");
  	wmove(pause_win, 10,4);
  	wprintw(pause_win, "Hit p to continue.");
  	pause_panel = new_panel(pause_win);
@@ -94,144 +96,7 @@ void toggle_pause_menu() {
 		toggle_pause_menu();
 	}
 }
-void init_high_score_display() {
-        int max_x, max_y, starty, startx;
-        getmaxyx(stdscr, max_y, max_x);
 
-        starty = (max_y - SCORE_ROWS) / 2;
-        startx = (max_x - SCORE_COLS) / 2;
-
-        high_score_win = create_newwin(SCORE_ROWS, SCORE_COLS, starty, startx);
-        box(high_score_win, 0 , 0);
-         
-        wmove(high_score_win, 1,5);
-        wprintw(high_score_win, "****High Scores****");
-        wmove(high_score_win, 15,3);
-        wprintw(high_score_win, "Hit p to return to game.");
-	high_score list;
-	int i;
-	int curX = 5;
-	int curY = 3;
-	wmove(high_score_win, curY, curX); // 3 down, 5th col 
-	init_score_struct(&list);
-	for(i = 0; i<10;i++) {
-		wprintw(high_score_win, "%d)", i+1);
-		wmove(high_score_win, curY, curX + 3);
-		wprintw(high_score_win, "%s", list.name[i]);
-		wmove(high_score_win, curY, curX + 15);
-		wprintw(high_score_win, "%s", list.score[i]);
-		curY++;
-		wmove(high_score_win, curY, curX);
-	}
-        high_score_panel = new_panel(high_score_win);
-        update_panels();
-        doupdate();
-        getch();
-}
-
-void toggle_high_score_display(){
-	char input;
-	if(!high_score_win) {
-		init_high_score_display();
-	}
-        if (game.paused) {
-                hide_panel(high_score_panel);
-		show_panel(play_panel);
-		show_panel(status_panel);
-                update_panels();
-                doupdate();
-                set_ticker(INTERVAL);
-                game.paused = false;
-        }
-        else if (!game.paused) {
-                set_ticker(0);
-		hide_panel(play_panel);
-		hide_panel(status_panel);
-                show_panel(high_score_panel);
-                update_panels();
-                doupdate();
-                game.paused = true;
-                do {
-                        input = getch();
-                } while (input != 'p');
-                toggle_high_score_display();
-	}
-}	
-void init_game_menu() {
-        int max_x, max_y, starty, startx;
-        getmaxyx(stdscr, max_y, max_x);
-
-        starty = (max_y - SCORE_ROWS) / 2;
-        startx = (max_x - SCORE_COLS) / 2;
-/*
-
-	ITEM **my_items;
-	int c;				
-	MENU *my_menu;
-	int n_choices, i;
-	ITEM *cur_item;
-	n_choices =(sizeof(menuChoices) / sizeof(menuChoices[0]));
-	my_items = (ITEM **)calloc(n_choices + 1, sizeof(ITEM *));
-	for(i = 0; i < n_choices; ++i)
-	        my_items[i] = new_item(menuChoices[i], menuChoices[i]);
-	my_items[n_choices] = (ITEM *)NULL;
-
-	my_menu = new_menu((ITEM **)my_items);
-	mvprintw(LINES - 2, 0, "F1 to Exit");
-	post_menu(my_menu);
-	refresh();
-
-	while((c = getch()) != 'p')
-	{   switch(c)
-	    {	case KEY_DOWN:
-		        menu_driver(my_menu, REQ_DOWN_ITEM);
-				break;
-			case KEY_UP:
-				menu_driver(my_menu, REQ_UP_ITEM);
-				break;
-		}
-	}
-*/
-
-        gmenu_win = create_newwin(SCORE_ROWS, SCORE_COLS, starty, startx);
-        box(gmenu_win, 0 , 0);
-        wmove(gmenu_win, 1,5);
-        wprintw(gmenu_win, "**** Game Menu ****");
-	
-	gmenu_panel = new_panel(gmenu_win);
-	update_panels();
-	doupdate();
-	getch();	
-}
-void toggle_game_menu() {
-	char input;
-	if(!gmenu_win) {
-		init_game_menu();
-	}
-	if (game.paused) {
-                hide_panel(gmenu_panel);
-                show_panel(play_panel);
-                show_panel(status_panel);
-                update_panels();
-                doupdate();
-                set_ticker(INTERVAL);
-                game.paused = false;
-        }
-        else if (!game.paused) {
-                set_ticker(0);
-                hide_panel(play_panel);
-                hide_panel(status_panel);
-                show_panel(gmenu_panel);
-                update_panels();
-                doupdate();
-                game.paused = true;
-                do {
-                        input = getch();
-                } while (input != 'p');
-                toggle_game_menu();
-        }
-	
-}
 void move_character(int keypress) {
 	switch (keypress) {
 		case 'f':		//used to ensure that we fall with gravity
@@ -264,12 +129,18 @@ void move_character(int keypress) {
 			break;
 
 		case 'z':
-			if (map.attribute[map.world_row][map.world_col][game.current_row + 1][game.current_column] == 'b') {
+			if (map.attribute[map.world_row]\
+					[map.world_col]\
+					[game.current_row + 1]\
+					[game.current_column] == 'b') {
 				blank_character();
 				toggle_gravity();
 				disp_player();
 			}
-			else if (map.attribute[map.world_row][map.world_col][game.current_row - 1][game.current_column] == 'b') {
+			else if (map.attribute[map.world_row]\
+					[map.world_col]\
+					[game.current_row - 1]\
+					[game.current_column] == 'b') {
 				blank_character();
 				toggle_gravity();
 				disp_player();
@@ -279,12 +150,12 @@ void move_character(int keypress) {
 		case 'p': // hide the menu/intro and show the game
 			toggle_pause_menu();
 			break;
-		case 'h':
+/*		case 'h':
 			toggle_high_score_display();
 			break;
 		case 'm':
 			toggle_game_menu();
-			break;
+			break; */
 		case 'q':
 			quit_game();
 			break;
@@ -292,7 +163,9 @@ void move_character(int keypress) {
 }
 
 bool check_spot(int row, int col) {
-	switch (map.attribute[map.world_row][map.world_col][row][col]) {
+	switch (map.attribute[map.world_row]\
+						[map.world_col]\
+						[row][col]) {
 		case BLOCKED:		//stop falling
 			return false;
 			break;
@@ -342,7 +215,8 @@ bool check_spot(int row, int col) {
 			return true;
 			break;
 	}
-	return false;	//Shouldn't ever get here...Added to remove compiler warning
+	//Shouldn't ever get here...Added to remove compiler warning
+	return false;	
 }
 
 void disp_player() {
@@ -406,20 +280,17 @@ void you_won() {
 
 void quit_game() {
 	process_high_score(game.score);
-	del_panel(intro_panel);
+	//dealloc_menu();
 	del_panel(play_panel);
 	del_panel(status_panel);
 	del_panel(pause_panel);
-	del_panel(high_score_panel);
-	delwin(intro_win);
+	del_panel(gmenu_panel);
 	delwin(play_win);
 	delwin(status_win);
 	delwin(pause_win);
-	delwin(high_score_win);
+	delwin(gmenu_win);
 	endwin();
-	system("echo ****High Scores****");
 	puts("Thanks for playing!");
-	system("cat ../data/high_scores");
 	exit(0);
 }
 

@@ -8,7 +8,6 @@ Team members:
 	Tanya Burmeister
 	Steve Monette
 
-Game concept: Simple adventure side-scroller, where the player has the ability to
-move around the level, move to the edge of the screen to load a new area, and 
-reverse gravity.  This is a clone of the game 'VVVVVVVVVVVV'.
-
+Game concept: Simple adventure side-scroller, where the player has the ability
+to move around the level, move to the edge of the screen to load a new area, 
+and reverse gravity.  This is a clone of the game 'VVVVVVVVVVVV'.

@@ -17,14 +17,12 @@
 //Window sizes
 #define PLAY_ROWS 23
 #define PLAY_COLS 80
-#define INTRO_ROWS 15
-#define INTRO_COLS 30
+#define MENU_ROWS 18
+#define MENU_COLS 30
 #define PAUSE_ROWS 15
 #define PAUSE_COLS 30
 #define STATUS_ROWS 1
 #define STATUS_COLS 80
-#define SCORE_ROWS 16
-#define SCORE_COLS 30
 //msecs
 #define INTERVAL 250
 //Score values
