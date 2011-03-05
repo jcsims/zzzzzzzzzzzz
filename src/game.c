@@ -222,7 +222,7 @@ static void quit_no_play() {
 	exit(0);
 }
 
-void dealloc_menu() {
+static void dealloc_menu() {
 	int i,
 		n_items;
 

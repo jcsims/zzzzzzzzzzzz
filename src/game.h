@@ -25,6 +25,6 @@ static void clear_game_menu();
 static void show_readme();
 static void view_high_scores();
 static void quit_no_play();
-void dealloc_menu();
+static void dealloc_menu();
 
 #endif // GAME_H_

@@ -12,8 +12,8 @@
 #define REVERSE false	//or upside down
 #define STARTING_ROW 1
 #define STARTING_COLUMN 73
-#define PLAYER_NORM '&'
-#define PLAYER_REVERSE '?'
+#define PLAYER_NORM 'M'
+#define PLAYER_REVERSE 'W'
 //Window sizes
 #define PLAY_ROWS 23
 #define PLAY_COLS 80
@@ -26,7 +26,8 @@
 //msecs
 #define INTERVAL 250
 //Score values
-#define INIT_SCORE 5000
+#define INIT_SCORE 0
+#define MAX_TIME_SCORE 5000
 #define GOAL_PTS 5000
 
 //Map attributes
@@ -35,6 +36,7 @@
 #define DEADLY 'd'
 #define BLOCKED 'b'
 #define GOAL 'g'
+#define WIN 'w'
 #define UP 'u'
 #define DOWN 'e'
 #define LEFT 'l'
