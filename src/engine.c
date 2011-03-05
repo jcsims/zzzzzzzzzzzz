@@ -44,7 +44,8 @@ void update_status_bar() {
 		}
 	}
 	wmove(status_win, 0,0);
-	wprintw(status_win, "Time elapsed: %d Current score: %d", game.time, game.score);
+	wprintw(status_win, "Time elapsed: %d Current score: %d",\
+						game.time, game.score);
 	wrefresh(status_win);
 }
 
