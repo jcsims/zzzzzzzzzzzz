@@ -10,8 +10,8 @@
 
 #define NORMAL true	//used for the character being right side up
 #define REVERSE false	//or upside down
-#define STARTING_ROW 1
-#define STARTING_COLUMN 73
+#define STARTING_ROW 4
+#define STARTING_COLUMN 2
 #define PLAYER_NORM '&'
 #define PLAYER_REVERSE '?'
 //Window sizes
