@@ -91,6 +91,11 @@ int print_map() {
 					waddch(play_win, '@');
 					wattroff(play_win, COLOR_PAIR(2));
 					break;
+				case WIN:
+					wattron(play_win, COLOR_PAIR(2));
+					waddch(play_win, '!');
+					wattroff(play_win, COLOR_PAIR(2));
+					break;
 				case UP:
 					wattron(play_win, COLOR_PAIR(4));
 					waddch(play_win, '^');

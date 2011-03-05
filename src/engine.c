@@ -39,8 +39,8 @@ void update_status_bar() {
 	if (count == 4) {
 		game.time++;
 		count = 0;
-		if (game.score > 0) {
-			game.score--;
+		if (game.score <= MAX_TIME_SCORE) {
+			game.score++;
 		}
 	}
 	wmove(status_win, 0,0);
@@ -189,6 +189,15 @@ bool check_spot(int row, int col) {
 			return false;
 			break;
 		case GOAL:
+			game.score += GOAL_PTS;
+			//To prevent from getting infinite points, erase goal block
+			map.attribute[map.world_row]\
+						[map.world_col]\
+						[row][col] = '*';
+			return true;
+			break;
+		case WIN:
+			game.score += GOAL_PTS;
 			you_won();
 			break;
 		case UP:
