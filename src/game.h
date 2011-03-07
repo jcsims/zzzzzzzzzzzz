@@ -17,6 +17,8 @@
 #include "engine.h"
 #include "defs.h"
 
+#define README "../data/README"
+
 static void init_game ();
 static void play_game();
 static int init_alarm_handler();

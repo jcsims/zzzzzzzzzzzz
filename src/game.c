@@ -177,9 +177,25 @@ static void clear_game_menu() {
 }
 
 static void show_readme() {
+	FILE *readin;
+	char readme[README_ROWS][README_COLS];
+	int i;
+	int curX = 4;
+	int curY = 4;
+
 	unpost_menu(my_menu);
-	wmove(gmenu_win, 3, 1);
-	wprintw(gmenu_win, "README here.");
+	readin = fopen(README, "r");
+	for(i = 0; i < README_ROWS; i++)
+	{
+		fgets(readme[i], README_COLS, readin);
+	}
+	fclose(readin);
+	for(i = 0; i < README_ROWS; i++)
+	{
+		wmove(gmenu_win, curY + i, curX);
+		wprintw(gmenu_win, readme[i]);
+	}
+	box(gmenu_win, 0, 0);
 	update_panels();
 	doupdate();
 	getch();
