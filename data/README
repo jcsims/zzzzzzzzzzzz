@@ -7,5 +7,5 @@ Movement:
 Blocks:
 ^ death
 - reverses gravity
-@ +**** points
+@ +5000 points
 ! wins the game
