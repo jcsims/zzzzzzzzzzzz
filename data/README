@@ -1,0 +1,11 @@
+Movement:
+(left/right) move l/r
+(z) reverse gravity!
+(p) pause the game
+(q) quit game
+
+Blocks:
+^ death
+- reverses gravity
+@ +**** points
+! wins the game
