@@ -23,6 +23,8 @@
 #define PAUSE_COLS 30
 #define STATUS_ROWS 1
 #define STATUS_COLS 80
+#define README_ROWS 11
+#define README_COLS 30
 //msecs
 #define INTERVAL 250
 //Score values
