@@ -44,8 +44,11 @@ void update_status_bar() {
 		}
 	}
 	wmove(status_win, 0,0);
-	wprintw(status_win, "Time elapsed: %d Current score: %d Lives: %d" ,\
-						game.time, game.score + game.timescore, game.lives);
+	wprintw(status_win, "Time elapsed: %-4d", game.time);
+	wprintw(status_win, "\tCurrent score: %-4d", game.score + game.timescore);
+	wprintw(status_win, "\tLives: %d", game.lives);
+	//Show current world location, human readable
+	wprintw(status_win, "\tLocation: %dx%d", map.world_row + 1, map.world_col + 1);
 	wrefresh(status_win);
 }
 
@@ -151,12 +154,7 @@ void move_character(int keypress) {
 		case 'p': // hide the menu/intro and show the game
 			toggle_pause_menu();
 			break;
-/*		case 'h':
-			toggle_high_score_display();
-			break;
-		case 'm':
-			toggle_game_menu();
-			break; */
+
 		case 'q':
 			quit_game();
 			break;
