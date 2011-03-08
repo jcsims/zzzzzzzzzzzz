@@ -9,6 +9,16 @@
 
 #include "game.h"
 
+static void init_game ();
+static void play_game();
+static int init_alarm_handler();
+static void show_game_menu();
+static void clear_game_menu();
+static void show_readme();
+static void view_high_scores();
+static void quit_no_play();
+static void dealloc_menu();
+
 d_game_state game;
 d_game_map map;
 WINDOW *play_win, *status_win, *pause_win, *gmenu_win;
@@ -25,7 +35,7 @@ int main (int argc, char *argv[]) {
 	return 0;
 }
 
-static void init_game () {
+void init_game () {
 	
  	initscr(); 				//Start ncurses
  	start_color();			//Enable use of color
@@ -67,8 +77,15 @@ static void init_game () {
 }
 
 static void play_game() {
+	int start_x, start_y, max_x, max_y;
+
 	dealloc_menu();
-	play_win = create_newwin(game.max_rows, game.max_cols, 0, 0);
+
+	getmaxyx(stdscr, max_y, max_x);
+    start_y = (max_y - PLAY_ROWS) / 2;
+    start_x = (max_x - PLAY_COLS) / 2;
+
+	play_win = create_newwin(game.max_rows, game.max_cols, start_y, start_x);
 	play_panel = new_panel(play_win);
  	update_panels();
 	doupdate();
@@ -107,7 +124,7 @@ static int init_alarm_handler() {
 	return sigaction (SIGALRM, &handler, NULL);
 }
 
-void show_game_menu() {
+static void show_game_menu() {
     int max_x, 
     	max_y, 
     	starty, 
