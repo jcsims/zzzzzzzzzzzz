@@ -60,6 +60,7 @@ typedef struct d_game_state {
 	int resurect_row;
 	int resurect_col;
 	int time;
+	int timescore;
 	int score;
 } d_game_state;
 

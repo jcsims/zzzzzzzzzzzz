@@ -39,13 +39,13 @@ void update_status_bar() {
 	if (count == 4) {
 		game.time++;
 		count = 0;
-		if (game.score <= MAX_TIME_SCORE) {
-			game.score++;
+		if (game.timescore <= MAX_TIME_SCORE) {
+			game.timescore++;
 		}
 	}
 	wmove(status_win, 0,0);
 	wprintw(status_win, "Time elapsed: %d Current score: %d Lives: %d" ,\
-						game.time, game.score, game.lives);
+						game.time, game.score + game.timescore, game.lives);
 	wrefresh(status_win);
 }
 

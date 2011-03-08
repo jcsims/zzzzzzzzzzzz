@@ -47,6 +47,7 @@ static void init_game () {
 	game.resurect_gravity = REVERSE;
 	game.resurect_row = 4;
 	game.resurect_col = 2;
+	game.timescore = INIT_SCORE;
 	game.score = INIT_SCORE;
 	read_maps();		//Read the map from the data files
 	map.world_row = START_WORLD_ROW;
