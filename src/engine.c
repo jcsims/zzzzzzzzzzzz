@@ -314,7 +314,7 @@ void you_won() {
 }
 
 void quit_game() {
-	process_high_score(game.score);
+	process_high_score(game.score + game.timescore);
 	del_panel(play_panel);
 	del_panel(status_panel);
 	del_panel(pause_panel);
