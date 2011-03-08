@@ -48,7 +48,7 @@ int read_map_cell(char *map_path) {
 			if (scanned != '\n')
 		        map.attribute[map.world_row][map.world_col][map_row][map_column] = scanned;
 		    else
-		    	map.attribute[map.world_row][map.world_col][map_row][map_column] = 'b';
+		    	map.attribute[map.world_row][map.world_col][map_row][map_column] = ' ';
 		}
 	}
     fclose(inFile);
