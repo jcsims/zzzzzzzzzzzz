@@ -27,7 +27,14 @@ int set_ticker( int n_msecs ){
 }
 
 void init_status_bar() {
-	status_win = create_newwin(STATUS_ROWS, STATUS_COLS, 23, 0);
+	int start_x, start_y, max_x, max_y;
+
+	getmaxyx(stdscr, max_y, max_x);
+    start_y = ((max_y - STATUS_ROWS) / 2) + 12;
+    start_x = (max_x - STATUS_COLS) / 2;
+
+
+	status_win = create_newwin(STATUS_ROWS, STATUS_COLS, start_y, start_x);
 	status_panel = new_panel(status_win);
  	update_panels();
 	doupdate();

@@ -102,6 +102,9 @@ int write_high_score(high_score *temp)
 
 void create_hs_win(char name[20])
 {
+    hide_panel(play_panel);
+    update_panels();
+    doupdate();
 	high_score_win = create_newwin(PLAY_ROWS, PLAY_COLS, 0, 0);
 //	high_score_panel = new_panel(high_score_win);
 //	update_panels();

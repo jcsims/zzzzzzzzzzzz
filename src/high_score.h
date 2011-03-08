@@ -7,13 +7,15 @@
 #ifndef HIGH_SCORE_H_
 #define HIGH_SCORE_H_
 
-#include<stdio.h>
-#include<string.h>
-#include<stdlib.h>
-#include<ncurses.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <ncurses.h>
 #include "engine.h"
 
 #define HIGH_SCORE_PATH "../data/high_scores"
+
+extern PANEL *play_panel;
 
 typedef struct high_score
 {
