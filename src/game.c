@@ -43,6 +43,9 @@ static void init_game () {
 	game.max_rows = PLAY_ROWS;
 	game.max_cols = PLAY_COLS;
 	game.time = 0;
+	game.lives = 5;
+	game.resurect_row = 4;
+	game.resurect_col = 2;
 	game.score = INIT_SCORE;
 	read_maps();		//Read the map from the data files
 	map.world_row = START_WORLD_ROW;
