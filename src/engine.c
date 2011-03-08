@@ -180,6 +180,7 @@ bool check_spot(int row, int col) {
 				blank_character();
 				game.current_row = game.resurect_row;
 				game.current_column = game.resurect_col;
+				game.gravity = game.resurect_gravity;
 				disp_player();
 				game.lives--;
 			}
@@ -218,6 +219,7 @@ bool check_spot(int row, int col) {
 			print_map();
 			game.resurect_row = game.current_row - 1;
 			game.resurect_col = game.current_column;
+			game.resurect_gravity = game.gravity;
 			return true;
 			break;
 		case DOWN:
@@ -226,6 +228,7 @@ bool check_spot(int row, int col) {
 			print_map();
 			game.resurect_row = game.current_row + 1;
 			game.resurect_col = game.current_column;
+			game.resurect_gravity = game.gravity;
 			return true;
 			break;
 		case RIGHT:
@@ -234,6 +237,7 @@ bool check_spot(int row, int col) {
 			print_map();
 			game.resurect_row = game.current_row;
 			game.resurect_col = game.current_column;
+			game.resurect_gravity = game.gravity;
 			return true;
 			break;
 		case LEFT:
@@ -242,6 +246,7 @@ bool check_spot(int row, int col) {
 			print_map();
 			game.resurect_row = game.current_row;
 			game.resurect_col = game.current_column;
+			game.resurect_gravity = game.gravity;
 			return true;
 			break;
 	}

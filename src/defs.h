@@ -56,6 +56,7 @@ typedef struct d_game_state {
 	int max_rows;
 	int max_cols;
 	int lives;
+	int resurect_gravity;
 	int resurect_row;
 	int resurect_col;
 	int time;

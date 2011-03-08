@@ -44,6 +44,7 @@ static void init_game () {
 	game.max_cols = PLAY_COLS;
 	game.time = 0;
 	game.lives = 5;
+	game.resurect_gravity = REVERSE;
 	game.resurect_row = 4;
 	game.resurect_col = 2;
 	game.score = INIT_SCORE;
