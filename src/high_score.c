@@ -77,21 +77,26 @@ int write_high_score(high_score *temp)
 {
     FILE *fout;
     int i;
+	sigset_t intmask;
 
+	if((sigemptyset(&intmask) == -1) || (sigaddset(&intmask, SIGINT) == -1))
+	{
+		perror("Failed to initialize the signal mask");
+		return 1;
+	}
+	sigprocmask(SIG_BLOCK, &intmask, NULL);
     if(!(fout = fopen(HIGH_SCORE_PATH, "w+")))
     {
         printf("Error opening high_scores.");
         return 0;
     }
-
     for(i = 0; i < 10; i++)
     {
         fprintf(fout, "%s ", temp->name[i]);
         fprintf(fout, "%s\n", temp->score[i]);
     }
-
+	sigprocmask(SIG_UNBLOCK, &intmask, NULL);
     fclose(fout);
-
     return 1;
 }
 
