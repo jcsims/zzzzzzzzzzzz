@@ -44,8 +44,8 @@ void update_status_bar() {
 		}
 	}
 	wmove(status_win, 0,0);
-	wprintw(status_win, "Time elapsed: %d Current score: %d",\
-						game.time, game.score);
+	wprintw(status_win, "Time elapsed: %d Current score: %d Lives: %d" ,\
+						game.time, game.score, game.lives);
 	wrefresh(status_win);
 }
 
@@ -174,7 +174,19 @@ bool check_spot(int row, int col) {
 			return true;
 			break;
 		case DEADLY:
-			you_died();
+			//you_died();
+			if(game.lives != 0)
+			{
+				blank_character();
+				game.current_row = game.resurect_row;
+				game.current_column = game.resurect_col;
+				disp_player();
+				game.lives--;
+			}
+			else
+			{
+				you_died();
+			}
 			break;
 		case GRAVITYBAR_HORZ:
 			blank_character();
@@ -204,24 +216,32 @@ bool check_spot(int row, int col) {
 			map.world_row--;
 			game.current_row = 23;
 			print_map();
+			game.resurect_row = game.current_row - 1;
+			game.resurect_col = game.current_column;
 			return true;
 			break;
 		case DOWN:
 			map.world_row++;
 			game.current_row = 0;
 			print_map();
+			game.resurect_row = game.current_row + 1;
+			game.resurect_col = game.current_column;
 			return true;
 			break;
 		case RIGHT:
 			map.world_col++;
 			game.current_column = 0;
 			print_map();
+			game.resurect_row = game.current_row;
+			game.resurect_col = game.current_column;
 			return true;
 			break;
 		case LEFT:
 			map.world_col--;
-			game.current_column = 80;
+			game.current_column = 78;
 			print_map();
+			game.resurect_row = game.current_row;
+			game.resurect_col = game.current_column;
 			return true;
 			break;
 	}
