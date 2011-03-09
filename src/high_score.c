@@ -9,6 +9,10 @@
 
 #include "high_score.h"
 
+static int check_score();
+static int write_high_score();
+static void create_hs_win();
+
 WINDOW *high_score_win;
 //PANEL *high_score_panel;
 
@@ -34,7 +38,7 @@ int init_score_struct(high_score *temp)
     return 1;
 }
 
-int check_score(high_score *temp, int tmpint)
+static int check_score(high_score *temp, int tmpint)
 {
     int i, j;
     char tmpname[20];
@@ -73,7 +77,7 @@ int check_score(high_score *temp, int tmpint)
     return 1;
 }
 
-int write_high_score(high_score *temp)
+static int write_high_score(high_score *temp)
 {
     FILE *fout;
     int i;
@@ -100,7 +104,7 @@ int write_high_score(high_score *temp)
     return 1;
 }
 
-void create_hs_win(char name[20])
+static void create_hs_win(char name[20])
 {
     hide_panel(play_panel);
     update_panels();
