@@ -14,22 +14,22 @@ EXECUTABLE=zzzzzzzzzzzz
 all: $(BUILDDIR)/$(EXECUTABLE)
 
 $(BUILDDIR)/$(EXECUTABLE): $(OBJECTS)
-	cd $(BUILDDIR); $(CC) $(LDFLAGS) $(OBJECTS) -o $(EXECUTABLE)
+	@cd $(BUILDDIR); $(CC) $(LDFLAGS) $(OBJECTS) -o $(EXECUTABLE)
 	
 map.o: map.c map.h defs.h
-	if [ ! -d $(BUILDDIR) ]; then mkdir $(BUILDDIR); fi
-	$(CC) $(CFLAGS) $< -o $(BUILDDIR)/$@
+	@if [ ! -d $(BUILDDIR) ]; then mkdir $(BUILDDIR); fi
+	@$(CC) $(CFLAGS) $< -o $(BUILDDIR)/$@
 
 game.o: game.c game.h defs.h
-	$(CC) $(CFLAGS) $< -o $(BUILDDIR)/$@
+	@$(CC) $(CFLAGS) $< -o $(BUILDDIR)/$@
 
 high_score.o: high_score.c high_score.h defs.h
-	$(CC) $(CFLAGS) $< -o $(BUILDDIR)/$@
+	@$(CC) $(CFLAGS) $< -o $(BUILDDIR)/$@
 
 engine.o: engine.c engine.h defs.h
-	$(CC) $(CFLAGS) $< -o $(BUILDDIR)/$@
+	@$(CC) $(CFLAGS) $< -o $(BUILDDIR)/$@
 
 clean:
-	rm -rf $(BUILDDIR)
+	@rm -rf $(BUILDDIR)
 run:
-	cd $(BUILDDIR); ./$(EXECUTABLE)
+	@cd $(BUILDDIR); ./$(EXECUTABLE)
