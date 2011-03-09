@@ -4,7 +4,8 @@
 			S.Monette
  * Date created: 17 Feb 2011
  * Edits:
-		24 Feb 2011 - maping now drawn in window using w[ncursefunc](play_win, [ncurses func attributes])
+		24 Feb 2011 - maping now drawn in window using 
+					  w[ncursefunc](play_win,[ncurses func attributes])
 		26Feb2011 - add case 'e' to print_map() to draw egress portals
  * Description: read in and process the map data file, populating the
  * map elements of the game data structure passed to it.
@@ -47,9 +48,11 @@ static int read_map_cell(char *map_path) {
 		for (map_column = 0; map_column < game.max_cols; map_column++) {
 			scanned = fgetc(inFile);
 			if (scanned != '\n')
-		        map.attribute[map.world_row][map.world_col][map_row][map_column] = scanned;
+		        map.attribute[map.world_row][map.world_col]\
+							 [map_row][map_column] = scanned;
 		    else
-		    	map.attribute[map.world_row][map.world_col][map_row][map_column] = ' ';
+		    	map.attribute[map.world_row][map.world_col]\
+							 [map_row][map_column] = ' ';
 		}
 	}
     fclose(inFile);
@@ -63,8 +66,9 @@ int print_map() {
 	for (map_row = 0; map_row < game.max_rows; map_row++) {
 		for (map_column = 0; map_column < game.max_cols; map_column++) {
 			wmove(play_win, map_row, map_column);
-			switch (map.attribute[map.world_row][map.world_col][map_row][map_column]) {
-				case EMPTY:		//this will be most of the space, so save some comparison
+			switch (map.attribute[map.world_row][map.world_col]\
+								 [map_row][map_column]) {
+				case EMPTY://will be most the space, so save some comparison
 					waddch(play_win,' ');
 					break;
 				case BLOCKED:

@@ -4,7 +4,8 @@
  * Date created: 17 Feb 2011
  * Description: Various definitiions and function prototypes used in map.c
  *	Edits:
- *		26Feb2011 - add #define EGRESS 'e' attribute for entry/exit portals on maps
+ *		26Feb2011 - add #define EGRESS 'e' attribute for entry/exit 
+					portals on maps
 					change #define MAP_PATH from map to map02 
  *
  */

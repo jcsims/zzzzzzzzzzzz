@@ -5,7 +5,7 @@
  * Description: Read in and save the game high score info 
  */
 
- //TODO: Make sure to block interrupts while writing and reading the file
+ //TODO: 
 
 #include "high_score.h"
 
@@ -14,7 +14,6 @@ static int write_high_score();
 static void create_hs_win();
 
 WINDOW *high_score_win;
-//PANEL *high_score_panel;
 
 int init_score_struct(high_score *temp)
 {
@@ -114,10 +113,8 @@ static void create_hs_win(char name[20])
    	hide_panel(play_panel);
     update_panels();
     doupdate();
-	high_score_win = create_newwin(game.max_rows, game.max_cols, start_y, start_x);
-//	high_score_panel = new_panel(high_score_win);
-//	update_panels();
-//	doupdate();
+	high_score_win = create_newwin(game.max_rows, game.max_cols,\
+								   start_y, start_x);
 	wmove(high_score_win, 2, 25);
 	wprintw(high_score_win, "Congrats you got a high score!!!");
 	wmove(high_score_win, 3, 25);

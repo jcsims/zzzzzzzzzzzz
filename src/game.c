@@ -166,7 +166,7 @@ static void show_game_menu() {
     my_menu = new_menu((ITEM **)my_items);
     //Associate our menu with the game window
     set_menu_win(my_menu, gmenu_win);
-    set_menu_sub(my_menu, derwin(gmenu_win, MENU_ROWS - 6, MENU_COLS - 4, 5, 3));
+    set_menu_sub(my_menu, derwin(gmenu_win, MENU_ROWS - 6, MENU_COLS - 4, 5,3));
     clear_game_menu();
     post_menu(my_menu);
     

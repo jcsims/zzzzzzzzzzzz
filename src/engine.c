@@ -64,7 +64,8 @@ static void update_status_bar() {
 	wprintw(status_win, "\tCurrent score: %-4d", game.score + game.timescore);
 	wprintw(status_win, "\tLives: %d", game.lives);
 	//Show current world location, human readable
-	wprintw(status_win, "\tLocation: %dx%d", map.world_row + 1, map.world_col + 1);
+	wprintw(status_win, "\tLocation: %dx%d", map.world_row + 1, map.world_col \
+	+ 1);
 	wrefresh(status_win);
 }
 
