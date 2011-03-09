@@ -47,7 +47,6 @@ extern WINDOW *play_win, *status_win;
 extern PANEL *play_panel, *status_panel;
 
 int read_maps();
-int read_map_cell(char *map_path);
 int print_map();
 
 #endif	// MAP_H_

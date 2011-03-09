@@ -28,17 +28,9 @@ extern PANEL *play_panel, *intro_panel, *status_panel, *pause_panel, *high_score
 void alarm_trigger(int signal);
 int set_ticker(int n_msecs);
 void move_character(int keypress);
-bool check_spot(int row, int col);  //true - ok to move, false - can't move there
 void quit_game();
-void toggle_gravity();
-void you_died();
-void you_won();
 void disp_player();
-void blank_character();
 void init_status_bar();
-void update_status_bar();
-void init_pause_menu();
-void toggle_pause_menu();
 WINDOW *create_newwin(int height, int width, int starty, int startx);
 
 #endif // ENGINE_H_

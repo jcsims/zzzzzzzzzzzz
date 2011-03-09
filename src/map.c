@@ -12,6 +12,7 @@
 
 #include "map.h"
 
+static int read_map_cell();
 
 int read_maps() {  //need to clean this up - is there a better way?
 	read_map_cell(MAP0);
@@ -30,7 +31,7 @@ int read_maps() {  //need to clean this up - is there a better way?
 	return 0;
 }
 
-int read_map_cell(char *map_path) {
+static int read_map_cell(char *map_path) {
 	
 	FILE *inFile;
     char scanned;

@@ -7,6 +7,15 @@
 #include "engine.h"
 #include "defs.h"
 
+static void update_status_bar();
+static void init_pause_menu();
+static void toggle_pause_menu();
+static bool check_spot();
+static void blank_character();
+static void toggle_gravity();
+static void you_died();
+static void you_won();
+
 void alarm_trigger(int signal) {
 	update_status_bar();
 	move_character( (int) 'f');
@@ -40,7 +49,7 @@ void init_status_bar() {
 	doupdate();
 }
 
-void update_status_bar() {
+static void update_status_bar() {
 	static int count = 0;
 	count++;
 	if (count == 4) {
@@ -59,7 +68,7 @@ void update_status_bar() {
 	wrefresh(status_win);
 }
 
-void init_pause_menu() {
+static void init_pause_menu() {
 	int max_x, max_y, starty, startx;
 
 	getmaxyx(stdscr, max_y, max_x);
@@ -83,7 +92,7 @@ void init_pause_menu() {
 	getch();
 }
 
-void toggle_pause_menu() {
+static void toggle_pause_menu() {
 	char input;
 	if (!pause_win) {
 		init_pause_menu();
@@ -168,7 +177,7 @@ void move_character(int keypress) {
 	}
 }
 
-bool check_spot(int row, int col) {
+static bool check_spot(int row, int col) {
 	switch (map.attribute[map.world_row]\
 						[map.world_col]\
 						[row][col]) {
@@ -273,7 +282,7 @@ void disp_player() {
 	wrefresh(play_win);
 }
 
-void blank_character() {
+static void blank_character() {
 	wmove(play_win, game.current_row, game.current_column);
 	waddch(play_win, ' ');
 	wrefresh(play_win);
@@ -291,14 +300,14 @@ WINDOW *create_newwin(int height, int width, int starty, int startx) {
 	return local_win;
 }
 
-void toggle_gravity() {
+static void toggle_gravity() {
 	if (game.gravity == NORMAL)
 		game.gravity = REVERSE;
 	else
 		game.gravity = NORMAL;
 }
 
-void you_died() {
+static void you_died() {
 	wmove(play_win, 10,20);
 	wprintw(play_win, "You died. Try not to hit the spikes.");
 	wmove(play_win, game.max_rows, game.max_cols);
@@ -307,7 +316,7 @@ void you_died() {
 	wgetch(play_win);
 	quit_game();
 }
-void you_won() {
+static void you_won() {
 	game.score += GOAL_PTS;
 	wmove(play_win, 10,20);
 	wprintw(play_win, "Congrats, you won!");
