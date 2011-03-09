@@ -1,0 +1,137 @@
+Format:
+Ticket [#]
+[Priority] [Assigned to] [Target Milestone] [Status]
+
+****** Alpha Tickets ******
+
+Ticket #12
+Implement basic user-controlled movement.
+Normal Chris S. Alpha - Closed
+
+Ticket #10
+Display a basic 1x1 map.
+Normal Chris S. Alpha - Closed
+
+Ticket #11
+Implement basic animation.
+Normal Chris S. Alpha - Closed
+
+Ticket #7
+Implement Makefile or some other build system.
+Normal Chris S. Alpha - Closed
+
+Ticket #2
+Implement map data file.
+Normal Chris S. Alpha - Closed
+
+Ticket #17
+Implement boundaries.
+Normal Steve M. Alpha - Closed
+
+Ticket #15
+Implement gravity.
+Normal Chris S. Alpha - Closed
+
+Ticket #1
+Intro Screen
+Normal Tanya B. Alpha - Closed
+
+Ticket #31
+Create and submit design document
+Normal Tanya B. Alpha - Closed
+
+Ticket #32
+submit Alpha - Closed release
+Normal Chris S. Alpha - Closed
+
+****** Beta Tickets ******
+
+Ticket #5
+Implement persistent high score file.
+Critical Ryan W. Beta - Closed
+
+Ticket #18
+Deallocate windows and panels on quit.
+High Chris S. Beta - Closed
+
+Ticket #20
+Add transition between map levels.
+High Chris S. Beta - Closed
+
+Ticket #9
+At least 5 levels or boards.
+High Steve M., Ryan W. Beta - Closed
+
+Ticket #28
+Convert game play to a window in a panel
+High Tanya B. Beta - Closed
+
+Ticket #8
+Status bar
+Normal Chris S. Beta - Closed
+
+Ticket #14
+Implement pause menu
+Normal Chris S. Beta - Closed
+
+Ticket #21
+Remove "falling" when moving left and right.
+Normal Chris S. Beta - Closed
+
+Ticket #30
+Add menu system
+Normal Tanya B. Beta - Closed
+
+Ticket #33
+Submit Beta - Closed release
+Normal Ryan W. Beta - Closed
+
+Ticket #16
+Fix Makefile so that binary doesn't compile every time.
+Low Steve M. Beta - Closed
+
+****** Final Release Tickets ******
+
+Ticket #3
+View README file from start menu.
+High Ryan W. Final Presentation - In Process
+
+Ticket #13
+Complete presentation slides.
+High Steve M. Final Presentation - In Process
+
+Ticket #4
+View high score list from start menu.
+Normal Chris S. Final Presentation - Closed
+
+Ticket #22
+Modify scoring system.
+Normal Chris S. Final Presentation - Closed
+
+Ticket #24
+fix maps and add scoring and winning block to map
+Normal Ryan W. Final Presentation - Closed
+
+Ticket #23
+Adjust all subPanels so that they appear centered in the playWindow.
+Normal Chris S. Final Presentation - Closed
+
+Ticket #25
+need to seperate total score and time score
+Normal Ryan W. Final Presentation - Closed
+
+Ticket #29
+Implement high score viewing at end of game
+Normal Ryan W. Final Presentation - Closed
+
+Ticket #34
+Create Project Reports
+Normal Tanya B. Final Presentation - Resolved
+
+Ticket #27
+Add 'static' keyword to file-internal functions.
+Low Ryan W. Final Presentation - Closed
+
+Ticket #26
+Block signals while writing to high scores file.
+Low Ryan W. Final Presentation - Closed
