@@ -340,6 +340,8 @@ void quit_game() {
 	delwin(pause_win);
 	delwin(gmenu_win);
 	endwin();
+	system("echo ****High Scores****");
+	system("cat ../data/high_scores");
 	puts("Thanks for playing!");
 	exit(0);
 }
