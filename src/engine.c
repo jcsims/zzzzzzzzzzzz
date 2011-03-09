@@ -318,6 +318,7 @@ static void you_died() {
 }
 static void you_won() {
 	game.score += GOAL_PTS;
+	game.timescore += (5000 - game.timescore) * 10;
 	wmove(play_win, 10,20);
 	wprintw(play_win, "Congrats, you won!");
 	wmove(play_win, game.max_rows, game.max_cols);
