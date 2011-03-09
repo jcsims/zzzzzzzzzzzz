@@ -22,10 +22,7 @@ typedef struct high_score
 }high_score;
 
 int init_score_struct();
-int check_score();
-int write_high_score();
 int process_high_score();
-void create_hs_win();
 
 
 #endif	// HIGH_SCORE_H_
