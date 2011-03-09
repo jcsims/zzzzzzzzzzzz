@@ -17,6 +17,6 @@
 #include "engine.h"
 #include "defs.h"
 
-#define README "../data/README"
+#define README "../README"
 
 #endif // GAME_H_

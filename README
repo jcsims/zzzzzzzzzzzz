@@ -1,19 +1,11 @@
-Authors: 
-Team RamRod:
-	Chris Sims
-	Steve Monette
-	Tanya Burmeister
-	Ryan Winters
+Movement:
+(left/right) move l/r
+(z) reverse gravity!
+(p) pause the game
+(q) quit game
 
-zzzzzzzzzzzz (that's 12, if you're counting) is a simple action side-scroller
-that places you in an alternate dimension where you have no defense and no way
-to traverse but to move your body and reverse gravity.
-
-In Game Keys:
-	Movement: (left/right arrows) move your character left and right
-		  (z) reverse gravity!
-		  (p) pause the game
-		  (q) quit game
-	Alternate Display:
-		  (h) view the high scores (and pause game if in play)
-		  (m) go to game menu
+Blocks:
+^ death
+- reverses gravity
+@ +5000 points
+! wins the game
