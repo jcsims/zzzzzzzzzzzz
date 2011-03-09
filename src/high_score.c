@@ -106,10 +106,15 @@ static int write_high_score(high_score *temp)
 
 static void create_hs_win(char name[20])
 {
-    hide_panel(play_panel);
+	int start_x, start_y, max_x, max_y;
+	
+	getmaxyx(stdscr, max_y, max_x);
+	start_y = (max_y - PLAY_ROWS) / 2;
+	start_x = (max_x - PLAY_COLS) / 2;
+   	hide_panel(play_panel);
     update_panels();
     doupdate();
-	high_score_win = create_newwin(PLAY_ROWS, PLAY_COLS, 0, 0);
+	high_score_win = create_newwin(game.max_rows, game.max_cols, start_y, start_x);
 //	high_score_panel = new_panel(high_score_win);
 //	update_panels();
 //	doupdate();
@@ -120,7 +125,7 @@ static void create_hs_win(char name[20])
 	wrefresh(high_score_win);
 	set_ticker(0);
 	echo();
-	mvgetstr(3, 54, name);
+	mvgetstr(start_y + 3, start_x + 54, name);
 	wrefresh(high_score_win);
 }
 
